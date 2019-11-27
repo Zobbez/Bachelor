@@ -24,7 +24,7 @@ include "includes/navigation.php";
                  $selectAllPostsQuery = mysqli_query($connection, $query);
                  // to display the categories, a while loop is used. fecth the result of the query.
                  while($row = mysqli_fetch_assoc($selectAllPostsQuery)) {
-                 // the data comes in an assosiative array and the row from the database, and it can be echoed as a li.        
+                 // the data comes in an assosiative array and the row from the database, and it can used to echo out the info.        
                         $post_title = $row['post_title'];
                         $post_author = $row['post_author'];
                         $post_date = $row['post_date'];
@@ -40,16 +40,16 @@ include "includes/navigation.php";
 
                         <!-- Blog Post -->
                         <h2>
-                            <a href="#"><?php echo $post_title ?></a>
+                            <a href="#"><?php echo $post_title; ?></a>
                         </h2>
                         <p class="lead">
-                            by <a href="index.php"><?php echo $post_author ?></a>
+                            by <a href="index.php"><?php echo $post_author; ?></a>
                         </p>
-                        <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+                        <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
                         <hr>
-                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                        <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                         <hr>
-                        <p> <?php echo $post_content ?> </p>
+                        <p> <?php echo $post_content; ?> </p>
                         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                         <hr>
