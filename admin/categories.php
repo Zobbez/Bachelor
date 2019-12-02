@@ -28,28 +28,30 @@ include "includes/navigation.php";
 
 
                             <?php  
+                                /////////////////////////////// CREATE QUERY //////////////////////////////
+
                             // check the post on submit
-                            if(isset($_POST['submit'])) {
+                                if(isset($_POST['submit'])) {
                             // variable holding the categoryTitle from the form
-                            $catTitle =  $_POST['categoryTitle'];
+                                $catTitle =  $_POST['categoryTitle'];
                             
                             // validation for title check it is an empty string or if it is empty
-                            if($catTitle == "" || empty($catTitle)) {
+                                if($catTitle == "" || empty($catTitle)) {
                                 // if empty echo put in a title
                                 echo "Put in a title";
 
                             } else {
                                 // if there is a title, insert the title to the categories table in the coloumn cat_title
-                                $query = "INSERT INTO categories(cat_title)";
+                                    $query = "INSERT INTO categories(cat_title)";
                                 // concatenate the rest of the query with the value to put into the database.
-                                $query .= "VALUE('{$catTitle}')";
+                                    $query .= "VALUE('{$catTitle}')";
 
                                 // send the query to the database
-                                $createCategoryQuery = mysqli_query($connection, $query);
+                                    $createCategoryQuery = mysqli_query($connection, $query);
 
                                 // If the create query was successful
-                                if(!$createCategoryQuery) {
-                                   //  if not kil the script
+                                    if(!$createCategoryQuery) {
+                                //  if not kil the script
                                     die('QUERY FAILED' .mysqli_error($connection));
 
                                 }
@@ -89,6 +91,9 @@ include "includes/navigation.php";
                             <tbody>
 
                             <?php 
+                                /////////////////////////////// READ QUERY //////////////////////////////
+
+
 
                                 // query to select all from the categories 
                                     $query = "SELECT * FROM categories";
@@ -110,6 +115,27 @@ include "includes/navigation.php";
                          } 
             
                             ?>
+                                    
+                            <?php 
+                                /////////////////////////////// DELETE QUERY //////////////////////////////
+
+
+
+                                // check if a get request is send and check for the delete key
+                                    if(isset($_GET['delete'])){
+                                // if it is found save the value of the key into variable
+                                    $deleteCatId = $_GET['delete'];
+                                // make the query that deletes the selected catagory from the categories table
+                                    $query = "DELETE FROM categories WHERE cat_id = {$deleteCatId}";
+                                // send the query to the database
+                                    $deleteQuery = mysqli_query($connection, $query);
+                                // refresh the page so that category is deleted instantly.
+                                    header("Location: categories.php");
+
+                                    }
+                            
+                            ?>
+
 
                             </tbody>
 
