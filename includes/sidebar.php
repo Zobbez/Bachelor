@@ -54,9 +54,9 @@
             // to display the categories, a while loop is used. fecth the result of the query.
                 while($row = mysqli_fetch_assoc($selectCategoriesSidebarQuery)) {
             // cat_title comes in an assosiative array and the row from the database , and it can be echoed as a li.    
-                $cat_title = $row['cat_title'];
+                $catTitle = $row['cat_title'];
         
-                echo "<li><a href='#'>{$cat_title}</a></li>";
+                echo "<li><a href='#'>{$catTitle}</a></li>";
         
                          } 
             

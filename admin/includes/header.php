@@ -1,4 +1,8 @@
-<?php include "../includes/db.php"; ?>
+<?php 
+// handleing buffering the request in the headers of the scripts, when a script is done it will send everything at the same time. instead of the normal 1 by 1
+ob_start();
+include "../includes/db.php"; 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
