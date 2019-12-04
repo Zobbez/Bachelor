@@ -1,7 +1,25 @@
 <?php 
 
-/////////////////////////////// CREATE  //////////////////////////////
-function addCategory() {
+
+    function confirm($result) {
+
+// makes the connection variable global
+    global $connection;
+
+//  the create query was successful if not kil the script
+    if(!$result) {
+
+    die("Quert Failed" . mysqli_error($connection));
+
+}
+
+  
+
+}
+
+
+/////////////////////////////// CREATE CATEGORY //////////////////////////////
+    function addCategory() {
 
 // makes the connection variable global
     global $connection;
@@ -36,22 +54,15 @@ function addCategory() {
       }
         
     }
+    
+}
 
 
-
-
-
-                            }
-
-
-/////////////////////////////// READ QUERY //////////////////////////////
-function readCategories() {
+/////////////////////////////// READ CATEGORY QUERY //////////////////////////////
+    function readCategories() {
 
 // makes the connection variable global
     global $connection;
-
-
-
 // query to select all from the categories 
     $query = "SELECT * FROM categories";
 // pass the db connection and the query.
@@ -75,12 +86,11 @@ function readCategories() {
 
 }     
 
-/////////////////////////////// DELETE QUERY //////////////////////////////
-function deleteCategory() {
-
+/////////////////////////////// DELETE CATEGORY QUERY //////////////////////////////
+    function deleteCategory() {
 
 // makes the connection variable global
-global $connection;
+    global $connection;
 
 // check if a get request is send and check for the delete key
     if(isset($_GET['delete'])){

@@ -24,7 +24,50 @@ include "includes/navigation.php";
 <small>Author name</small>
 </h1>
 
+<?php 
 
+//check if the GET request source is available 
+if(isset($_GET['source'])){
+// if it is set it is a variable called source
+$source = $_GET['source']; 
+
+} else {
+
+    $source = '';
+
+}
+//if source is equal to different cases to display different things
+switch($source) {
+
+case 'add-post';
+include "includes/add-post.php";
+break;
+
+case '100';
+echo "tis";
+break;
+
+case '9';
+echo "hula";
+break;
+
+// set the defualt to show all the posts
+default:
+include "includes/view-all-posts.php";
+break;
+
+
+
+
+
+}
+
+
+
+
+
+
+?>
 
 
 
