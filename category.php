@@ -17,9 +17,17 @@ include "includes/navigation.php";
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
+
+
                 <?php
+
+                // catch the category key 
+                if(isset($_GET['category']))
+                // convert the get request with category 
+                $postCategoryId = $_GET['category'];
+
                  // query to select all from posts
-                 $query = "SELECT * FROM posts";
+                 $query = "SELECT * FROM posts WHERE post_category_id = $postCategoryId";
                  // pass the db connection and the query.
                  $selectAllPostsQuery = mysqli_query($connection, $query);
                  // to display the categories, a while loop is used. fecth the result of the query.

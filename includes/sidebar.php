@@ -55,8 +55,10 @@
                 while($row = mysqli_fetch_assoc($selectCategoriesSidebarQuery)) {
             // cat_title comes in an assosiative array and the row from the database , and it can be echoed as a li.    
                 $catTitle = $row['cat_title'];
+            // get the cat_id from the database 
+                $catId = $row['cat_id'];
         
-                echo "<li><a href='#'>{$catTitle}</a></li>";
+                echo "<li><a href='category.php?category=$catId'>{$catTitle}</a></li>";
         
                          } 
             

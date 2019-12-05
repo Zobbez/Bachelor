@@ -1,38 +1,6 @@
 <?php 
 
-    if(isset($_POST['create-post'])) {
-        // assigning the values from the forms to variables.
-        $postTitle = $_POST['title'];
-        $postAuthor = $_POST['author'];
-        $postCategoryId = $_POST['post-category-id'];
-        $postStatus = $_POST['post-status'];
-        // super global FILES with image from form and a tempary location. needs to be told where to go.
-        $postImage = $_FILES['image']['name'];
-        $postImageTemp = $_FILES['image']['tmp_name'];
-        
-
-        $postTags = $_POST['post-tags'];
-        $postContent = $_POST['post-content'];
-        $postDate = date('d-m-y');
-        $postCommentCount = 4;
-
-
-
-        // takes two parameters and moves the image from the temp location to the location that is specified
-        move_uploaded_file($postImageTemp, "../images/$postImage");
-        // insert the post data into the posts table in the following columns
-        $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
-        // concatenate the rest of the query with the value to put into the database.
-        // the now function is gonna format the date to the current date and make it look good in the database
-        $query .= "VALUES ( {$postCategoryId}, '{$postTitle}', '{$postAuthor}', now(), '{$postImage}', '{$postContent}', '{$postTags}', '{$postCommentCount}', '{$postStatus}')";
-
-        $createPostQuery = mysqli_query($connection, $query);
-
-        
-        confirm($createPostQuery);
-
-    }
-
+createPost();
 
 ?>
 
@@ -50,8 +18,36 @@
 </div>
 
 <div class="form-group">
-    <label for="post-category">Post category id </label>
-    <input type="text" class="form-control" name="post-category-id"> 
+
+    <select name="post-category" id="post-category">
+        <?php
+
+// query to select all from the categories where the cat_id is the selected
+    $query = "SELECT * FROM categories";
+// pass the db connection and the query.
+    $selectCategories = mysqli_query($connection, $query);
+
+
+    confirmQuery($selectCategories);   
+
+// to display the categories, a while loop is used. fecth the result of the query.
+    while($row = mysqli_fetch_assoc($selectCategories)) {
+// catId and catTitle comes in an assosiative array and the row from the database , and it can be echoed in a td in a tr into the table.    
+    $catId = $row['cat_id'];
+    $catTitle = $row['cat_title'];
+
+    echo "<option value='$catId'>$catTitle</option>";
+
+
+
+
+
+                }
+
+        ?>
+
+                
+    </select>
 </div>
 
 <div class="form-group">

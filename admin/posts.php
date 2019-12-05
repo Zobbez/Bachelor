@@ -43,8 +43,8 @@ case 'add-post';
 include "includes/add-post.php";
 break;
 
-case '100';
-echo "tis";
+case 'edit-post';
+include "includes/edit-post.php";
 break;
 
 case '9';
@@ -61,6 +61,8 @@ break;
 
 
 }
+
+
 
 
 

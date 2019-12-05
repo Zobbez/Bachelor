@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="index.php">LOGO SKAL IND</a>
             </div>
 
 
@@ -30,8 +30,10 @@
                  while($row = mysqli_fetch_assoc($selectAllCategoriesQuery)) {
                  // cat_title comes in an assosiative array and the row from the database , and it can be echoed as a li.    
                         $cat_title = $row['cat_title'];
+                         // get the cat_id from the database 
+                        $catId = $row['cat_id'];
 
-                        echo "<li><a href='#'>{$cat_title}</a></li>";
+                        echo "<li><a href='category.php?category=$catId'>{$cat_title}</a></li>";
 
                  }
                  
