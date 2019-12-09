@@ -49,7 +49,7 @@ break;
 
 // set the defualt to show all the posts
 default:
-include "includes/view-all-posts.php";
+include "includes/view-all-comments.php";
 break;
 
 

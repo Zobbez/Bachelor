@@ -242,4 +242,97 @@
 
 }
 
+
+//////////////////////////////////// READ COMMENTS /////////////////////////////////
+
+function readComments() {
+
+    // makes the connection variable global
+        global $connection;
+    
+    // query to select all from the posts 
+        $query = "SELECT * FROM comments";
+    // pass the db connection and the query.
+        $selectComments = mysqli_query($connection, $query);
+    
+    // to display the posts, a while loop is used. fecth the result of the query.
+        while($row = mysqli_fetch_assoc($selectComments)) {
+    // the data comes in an assosiative array and the row from the database , and it can be run through a while loop and put into a tr into the table.    
+        $commentId = $row['comment_id'];
+        $commentPostId = $row['comment_post_id'];
+        $commentAuthor = $row['comment_author'];
+        $commentEmail = $row['comment_email'];
+        $commentContent = $row['comment_content'];
+        $commentStatus = $row['comment_status'];
+        $commentDate = $row['comment_date'];
+       
+    
+        echo "<tr>";
+        echo "<td>{$commentId}</td>";
+        echo "<td>{$commentAuthor}</td>";
+        echo "<td>{$commentContent}</td>";
+    
+   /*  // query to select all from the categories where the cat_id is the id of the post_category_id, so it can be related from the database
+        $query = "SELECT * FROM categories WHERE cat_id = {$postsCategoryId}";
+    // pass the db connection and the query.
+        $editCategories = mysqli_query($connection, $query);
+    
+    // to get all the categories, a while loop is used. fecth the result of the query.
+        while($row = mysqli_fetch_assoc($editCategories)) {
+    // catTitle comes in an assosiative array and the row from the database , and it can be echoed in a td in a tr into the table to display the name of the category instead of the number.    
+        $catTitle = $row['cat_title'];
+    // now the title can be echoed 
+        echo "<td>{$catTitle}</td>";
+        } */
+    
+        echo "<td>{$commentEmail}</td>";
+        echo "<td>{$commentStatus}</td>";
+        echo "<td>some title</td>";
+        echo "<td>{$commentDate}</td>";
+        echo "<td><a href='posts.php?source=edit-post&p_id='>approve</a></td>";
+        echo "<td><a href='posts.php?delete='>unapprove</a></td>";
+        echo "<td><a href='posts.php?source=edit-post&p_id='>edit</a></td>";
+        echo "<td><a href='posts.php?delete='>X</a></td>";
+        echo "</tr>";
+    
+    
+        }
+    
+    
+    
+    }
+
+    //////////////////////////////////// DELETE COMMENTS /////////////////////////////////
+
+    function deleteComments() {
+
+        // makes the connection variable global
+            global $connection;
+        // check if a get request is send and check for the delete key
+            if(isset($_GET['delete'])) {
+        // if it is found save the value of the key into variable
+            $deletePostId = $_GET['delete'];
+        // make the query that deletes the selected catagory from the categories table    
+            $query = "DELETE FROM posts WHERE post_id = $deletePostId"; 
+        // send the query to the database    
+            $deleteQuery = mysqli_query($connection, $query); 
+        // refresh the page so that category is deleted instantly.
+            header("Location: posts.php");
+            
+            
+            }    
+        
+        
+        
+            }
+    
+
+
+
+
+
+
+
+
+
 ?>
