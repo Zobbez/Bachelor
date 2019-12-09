@@ -11,7 +11,6 @@
         <th>Date</th>
         <th>Approve</th>
         <th>Unapprove</th>
-        <th>Edit</th>
         <th>Delete</th>
 
 

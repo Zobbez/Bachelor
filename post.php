@@ -71,9 +71,20 @@ if(isset($_GET['p_id'])) {
 
 <?php 
 if(isset($_POST['create-comment'])) {
-
-echo $_POST['comment-author'];
-
+// get the get request of p_id from the url 
+    $postId = $_GET['p_id'];
+// get the data that was typed in the form
+    $commentAuthor = $_POST['comment-author'];
+    $commentEmail = $_POST['comment-email'];
+    $commentContent = $_POST['comment-content'];
+// insert into comments all the needed fields from the database. 
+    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($postId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now() ) ";
+  
+    $addCommentQuery = mysqli_query($connection, $query);
+            
+            if(!$addCommentQuery) {
+            die('QUERY ERROR' . mysqli_error($connection));
+        }
 
 }
 

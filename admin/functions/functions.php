@@ -287,12 +287,24 @@ function readComments() {
     
         echo "<td>{$commentEmail}</td>";
         echo "<td>{$commentStatus}</td>";
-        echo "<td>some title</td>";
+
+    //  query to select all from the posts where the post_id column matches the id of the comment_post_id, so it can be related from the database
+        $query = "SELECT * FROM posts WHERE post_id =  $commentPostId";
+        $selectPostIdQuery = mysqli_query($connection, $query); 
+    // to get all the posts, a while loop is used. fecth the result of the query.
+        while($row = mysqli_fetch_assoc($selectPostIdQuery)) {
+    // catTitle comes in an assosiative array and the row from the database , and it can be echoed in a td in a tr into the table to display the name of the category instead of the number.    
+        $postId = $row['post_id'];
+        $postTitle = $row['post_title'];
+    // now the title can be echoed and linked to the postId in a GET request so it goes to the post that the comment belongs to
+        echo "<td><a href='../post.php?p_id=$postId'>{$postTitle}</a></td>";
+        } 
+
+
         echo "<td>{$commentDate}</td>";
         echo "<td><a href='posts.php?source=edit-post&p_id='>approve</a></td>";
         echo "<td><a href='posts.php?delete='>unapprove</a></td>";
-        echo "<td><a href='posts.php?source=edit-post&p_id='>edit</a></td>";
-        echo "<td><a href='posts.php?delete='>X</a></td>";
+        echo "<td><a href='comments.php?delete=$commentId'>X</a></td>";
         echo "</tr>";
     
     
@@ -311,13 +323,13 @@ function readComments() {
         // check if a get request is send and check for the delete key
             if(isset($_GET['delete'])) {
         // if it is found save the value of the key into variable
-            $deletePostId = $_GET['delete'];
+            $deleteCommentId = $_GET['delete'];
         // make the query that deletes the selected catagory from the categories table    
-            $query = "DELETE FROM posts WHERE post_id = $deletePostId"; 
+            $query = "DELETE FROM comments WHERE comment_id  = $deleteCommentId"; 
         // send the query to the database    
             $deleteQuery = mysqli_query($connection, $query); 
-        // refresh the page so that category is deleted instantly.
-            header("Location: posts.php");
+        // refresh the page so that comment is deleted instantly.
+            header("Location: comments.php");
             
             
             }    
