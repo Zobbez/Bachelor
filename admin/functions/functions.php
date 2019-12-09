@@ -39,6 +39,9 @@
     
     confirmQuery($createPostQuery);
 
+// refresh the page so that category is deleted instantly.
+    header("Location: posts.php");
+
     }
 
 }
@@ -250,7 +253,7 @@ function readComments() {
 // makes the connection variable global
     global $connection;
     
-// query to select all from the posts 
+// query to select all from the comments
     $query = "SELECT * FROM comments";
 // pass the db connection and the query.
     $selectComments = mysqli_query($connection, $query);
@@ -371,6 +374,62 @@ function readComments() {
     
         }            
     
+//////////////////////////////////// READ USERS /////////////////////////////////
+
+function readUsers() {
+
+    // makes the connection variable global
+        global $connection;
+        
+    // query to select all from the users
+        $query = "SELECT * FROM users";
+    // pass the db connection and the query.
+        $selectUsers = mysqli_query($connection, $query);
+        
+    // to display the users, a while loop is used. fecth the result of the query.
+        while($row = mysqli_fetch_assoc($selectUsers)) {
+    // the data comes in an assosiative array and the row from the database , and it can be run through a while loop and put into a tr into the table.    
+        $userId = $row['user_id'];
+        $userUsername = $row['user_username'];
+        $commentAuthor = $row['comment_author'];
+        $commentEmail = $row['comment_email'];
+        $commentContent = $row['comment_content'];
+        $commentStatus = $row['comment_status'];
+        $commentDate = $row['comment_date'];
+        
+    
+        echo "<tr>";
+        echo "<td>{$commentId}</td>";
+        echo "<td>{$commentAuthor}</td>";
+        echo "<td>{$commentContent}</td>";
+        echo "<td>{$commentEmail}</td>";
+        echo "<td>{$commentStatus}</td>";
+    //  query to select all from the posts where the post_id column matches the id of the comment_post_id, so it can be related from the database
+        $query = "SELECT * FROM posts WHERE post_id = $commentPostId";
+        $selectPostIdQuery = mysqli_query($connection, $query); 
+    // to get all the posts, a while loop is used. fecth the result of the query.
+        while($row = mysqli_fetch_assoc($selectPostIdQuery)) {
+    // catTitle comes in an assosiative array and the row from the database , and it can be echoed in a td in a tr into the table to display the name of the category instead of the number.    
+        $postId = $row['post_id'];
+        $postTitle = $row['post_title'];
+    // now the title can be echoed and linked to the postId in a GET request so it goes to the post that the comment belongs to
+        echo "<td><a href='../post.php?p_id=$postId'>{$postTitle}</a></td>";
+        } 
+    
+    // the comment id is used to target the selecteded comment
+        echo "<td>{$commentDate}</td>";
+        echo "<td><a href='comments.php?approve=$commentId'>approve</a></td>";
+        echo "<td><a href='comments.php?unapprove=$commentId'>unapprove</a></td>";
+        echo "<td><a href='comments.php?delete=$commentId'>X</a></td>";
+        echo "</tr>";
+    
+    
+        }
+    
+        
+        
+        }
+
 
 
 

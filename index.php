@@ -32,6 +32,12 @@ include "includes/navigation.php";
                         $postImage = $row['post_image'];
                         // function to limit the content show on the index.
                         $postContent = substr($row['post_content'],0, 30);
+                        $postStatus = $row['post_status'];
+
+                        if ($postStatus !== 'published') {
+                            echo "";
+
+                        } else {
                         
                 ?>
 
@@ -57,7 +63,7 @@ include "includes/navigation.php";
                         <hr>
 
 
-                <?php } ?>
+                <?php } } ?>
 
 
                
