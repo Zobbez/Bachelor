@@ -44,4 +44,10 @@ readComments();
 
 deleteComments();
 
+approveComments();
+
+unapproveComments();
+
+
+
 ?>
