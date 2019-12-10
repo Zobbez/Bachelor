@@ -1,4 +1,4 @@
- <!-- Footer -->
+ <!--------------- Footer ---------------->
  <footer>
             <div class="row">
                 <div class="col-lg-12">
@@ -10,20 +10,14 @@
         </footer>
 
     </div>
-    <!-- /.container -->
+<!--------------- END OF CONTENT  ------------------>
 
-    <!-- jQuery -->
+<!------------------------------------- jQuery ---------------------------------------->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
+<!---------------------------Latest compiled Bootstrap JavaScript ---------------------->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-   
-   
-    <!-- jQuery -->
-    <!-- <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <!-- <script src="js/bootstrap.min.js"></script> --> 
 
 </body>
 

@@ -65,6 +65,8 @@ $postId = $_GET['p_id'];
 
     confirmQuery($updateQuery);
 
+// refresh the page so that post is added and it goes back to view all posts.
+header("Location: posts.php");
 
 
 

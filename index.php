@@ -10,29 +10,31 @@ include "includes/navigation.php";
 
 
 
-    <!-- Page Content -->
+<!----------------------------------------- Page Content -------------------------------------->
     <div class="container">
 
         <div class="row">
 
-            <!-- Blog Entries Column -->
+<!----------------------------------------- All Posts Column ---------------------------------->
             <div class="col-md-8">
+
                 <?php
-                 // query to select all from posts
-                 $query = "SELECT * FROM posts";
-                 // pass the db connection and the query.
-                 $selectAllPostsQuery = mysqli_query($connection, $query);
-                 // to display the categories, a while loop is used. fecth the result of the query.
-                 while($row = mysqli_fetch_assoc($selectAllPostsQuery)) {
-                 // the data comes in an assosiative array and the row from the database, and it can used to echo out the info.        
-                        $postId = $row['post_id'];
-                        $postTitle = $row['post_title'];
-                        $postAuthor = $row['post_author'];
-                        $postDate = $row['post_date'];
-                        $postImage = $row['post_image'];
-                        // function to limit the content show on the index.
-                        $postContent = substr($row['post_content'],0, 30);
-                        $postStatus = $row['post_status'];
+
+                // query to select all from posts
+                    $query = "SELECT * FROM posts";
+                // pass the db connection and the query.
+                    $selectAllPostsQuery = mysqli_query($connection, $query);
+                // to display the categories, a while loop is used. fecth the result of the query.
+                    while($row = mysqli_fetch_assoc($selectAllPostsQuery)) {
+                // the data comes in an assosiative array and the row from the database, and it can used to echo out the info.        
+                    $postId = $row['post_id'];
+                    $postTitle = $row['post_title'];
+                    $postAuthor = $row['post_author'];
+                    $postDate = $row['post_date'];
+                    $postImage = $row['post_image'];
+                // function to limit the content show on the index.
+                    $postContent = substr($row['post_content'],0, 30);
+                    $postStatus = $row['post_status'];
 
                         if ($postStatus !== 'published') {
                             echo "";
@@ -46,7 +48,7 @@ include "includes/navigation.php";
                             <small>Secondary Text</small>
                         </h1>
 
-                        <!-- Blog Post -->
+<!---------------------------------------  Post Structure on home -------------------------------->
                         <h2>
                             <a href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
                         </h2>
@@ -55,7 +57,7 @@ include "includes/navigation.php";
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span> <?php echo $postDate; ?></p>
                         <hr>
-                        <a href="post.php?p_id=<?php echo $postId ?>">  <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt=""> </a>
+                        <a href="post.php?p_id=<?php echo $postId ?>"> <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt=""> </a>
                         <hr>
                         <p> <?php echo $postContent; ?> </p>
                         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -65,20 +67,12 @@ include "includes/navigation.php";
 
                 <?php } } ?>
 
-
-               
-
-
-             
-
-
-
             </div>
 
             <?php  include "includes/sidebar.php";  ?>
 
         </div>
-        <!-- /.row -->
+       
 
         <hr>
 

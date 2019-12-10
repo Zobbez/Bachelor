@@ -10,57 +10,58 @@ include "includes/navigation.php";
 
 
 
-    <!-- Page Content -->
+<!---------------------------- Page Content ----------------------------->
     <div class="container">
 
         <div class="row">
 
-            <!-- Blog Entries Column -->
+<!---------------------------- Searchblock query------------------------->
             <div class="col-md-8">
               
 
 <?php 
 
 // checking if there is a search submitted, 
-if(isset($_POST['submit'])) {
+    if(isset($_POST['submit'])) {
 // send the search as a post request
-$search = $_POST['search'];
+    $search = $_POST['search'];
 // select everything from posts where the post_title are like the search input
-$query = "SELECT * FROM posts WHERE post_title LIKE '%$search%' ";
+    $query = "SELECT * FROM posts WHERE post_title LIKE '%$search%' ";
 // send the query to the database
-$searchQuery = mysqli_query($connection, $query);
+    $searchQuery = mysqli_query($connection, $query);
 // check if the search query works 
-if(!$searchQuery) {
+    if(!$searchQuery) {
 // kill everything after if the query fails, and output the message QUERY FAILED  
     die("QUERY FAILED" . mysqli_error($connection));
 }
 // count the number of rows coming from the query
-$count = mysqli_num_rows($searchQuery);
+    $count = mysqli_num_rows($searchQuery);
 // if the count is 0 then echo that the is no search result
-if($count == 0) {
+    if($count == 0) {
 
     echo " <h1> no search result </h1>";
 
-} else {
+}   else {
 
     
-     // to display the search query , a while loop is used. fecth the result of the query.
-     while($row = mysqli_fetch_assoc($searchQuery)) {
-     // the data comes in an assosiative array and the row from the database.       
-            $post_title = $row['post_title'];
-            $post_author = $row['post_author'];
-            $post_date = $row['post_date'];
-            $post_image = $row['post_image'];
-            $post_content = $row['post_content'];
+// to display the search query , a while loop is used. fecth the result of the query.
+    while($row = mysqli_fetch_assoc($searchQuery)) {
+// the data comes in an assosiative array and the row from the database.       
+    $post_title = $row['post_title'];
+    $post_author = $row['post_author'];
+    $post_date = $row['post_date'];
+    $post_image = $row['post_image'];
+    $post_content = $row['post_content'];
             
     ?>
+
+<!--------------------- Structure of a post after search ------------------>    
 
             <h1 class="page-header">
                         Page Heading
                 <small>Secondary Text</small>
             </h1>
 
-            <!-- Blog Post -->
             <h2>
                 <a href="#"><?php echo $post_title; ?></a>
             </h2>

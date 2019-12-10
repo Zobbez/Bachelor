@@ -1,5 +1,5 @@
 <?php 
-// handleing buffering the request in the headers of the scripts, when a script is done it will send everything at the same time. instead of the normal 1 by 1
+// handling buffering the request in the headers of the scripts, when a script is done it will send everything at the same time. instead of the normal 1 by 1
 ob_start();
 include "../includes/db.php"; 
 include "./functions/functions.php";
@@ -18,14 +18,15 @@ include "./functions/functions.php";
 
     <title>SB Admin - Bootstrap Admin Template</title>
 
-     <!-- Bootstrap Core CSS -->
+     <!-------------------------- Bootstrap Core CSS ----------------------->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-    <!-- Custom CSS -->
+    <!--------------------------- Custom CSS ------------------------------->
     <link href="css/sb-admin.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--------------------------- Custom Font font-awesome ------------------------------>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+   
 
 
 

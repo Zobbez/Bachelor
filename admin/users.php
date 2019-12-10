@@ -1,62 +1,65 @@
-<?php 
-include "includes/header.php";
+    <?php 
+    include "includes/header.php";
 
-?>
+    ?>
 
 
 <div id="wrapper">
 
-<?php  
-include "includes/navigation.php";
+    <?php  
+    include "includes/navigation.php";
 
-?>
+    ?>
 
-<div id="page-wrapper">
+    <div id="page-wrapper">
 
-<div class="container-fluid">
+        <div class="container-fluid">
 
-<!-- Page Heading -->
-<div class="row">
-<div class="col-lg-12">
+<!------------ Page Heading -------------->
+            <div class="row">
+                
+                <div class="col-lg-12">
 
-<h1 class="page-header">
-    Welcome to Admin
-<small>Author name</small>
-</h1>
+                <h1 class="page-header">
+                    Welcome to Admin
+                    <small>Author name</small>
+                </h1>
 
-<?php 
+        
+        
+        <?php 
 
-//check if the GET request source is available 
-if(isset($_GET['source'])){
-// if it is set it is a variable called source
-$source = $_GET['source']; 
+            //check if the GET request source is available 
+                if(isset($_GET['source'])){
+            // if it is set it is a variable called source
+                $source = $_GET['source']; 
 
-} else {
+            } else {
 
-    $source = '';
+                $source = '';
 
-}
-//if source is equal to different cases to display different things
-switch($source) {
+            }
+            // if source is equal to different source cases from get GET request then display different things
+                switch($source) {
 
-case 'add-user';
-include "includes/add-user.php";
-break;
+                case 'add-user';
+                include "includes/add-user.php";
+                break;
 
-case 'edit-post';
-include "includes/edit-post.php";
-break;
+                case 'edit-post';
+                include "includes/edit-post.php";
+                break;
 
-// set the defualt to show all the posts
-default:
-include "includes/view-all-users.php";
-break;
-
-
+            // set the defualt to show all the users if no source criteria fits. 
+                default:
+                include "includes/view-all-users.php";
+                break;
 
 
 
-}
+
+
+            }
 
 
 

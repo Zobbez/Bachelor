@@ -10,18 +10,18 @@
 
 
 
-<!-- Page Content -->
+<!---------------------------- Page Content ----------------------------->
     <div class="container">
 
     <div class="row">
 
-<!-- Blog Entries Column -->
+<!---------------------------- Post Query Column ------------------------>
     <div class="col-md-8">
     
 <?php
 
 
-if(isset($_GET['p_id'])) {
+    if(isset($_GET['p_id'])) {
 
     $postId = $_GET['p_id'];
 
@@ -48,7 +48,7 @@ if(isset($_GET['p_id'])) {
     <small>Secondary Text</small>
     </h1>
 
-<!-- Blog Post -->
+<!----------------------------- Post single view  ---------------------------->
     <h2>
         <a href="#"><?php echo $postTitle; ?></a>
     </h2>
@@ -60,17 +60,19 @@ if(isset($_GET['p_id'])) {
         <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt="">
     <hr>
     <p> <?php echo $postContent; ?> </p>
-    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+    
 
-    <hr>
+    
 
 
 <?php } ?>
 
-<!-- Blog Comments -->
+<!----------------------------- Create Comment QUERY ---------------------------->
 
 <?php 
-if(isset($_POST['create-comment'])) {
+
+// checking if the variable is set, if it is create the comment
+    if(isset($_POST['create-comment'])) {
 // get the get request of p_id from the url 
     $postId = $_GET['p_id'];
 // get the data that was typed in the form
@@ -79,9 +81,9 @@ if(isset($_POST['create-comment'])) {
     $commentContent = $_POST['comment-content'];
 // insert into comments all the needed fields from the database. 
     $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($postId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now() ) ";
-  
+// send the query to the database  
     $addCommentQuery = mysqli_query($connection, $query);
-            
+//  the add comment query was successful if not kil the script           
             if(!$addCommentQuery) {
             die('QUERY ERROR' . mysqli_error($connection));
         }
@@ -98,9 +100,10 @@ if(isset($_POST['create-comment'])) {
 
 ?>
 
-<!-- Comments Form -->
+<!--------------------------------- Add Comments Form ------------------------------------->
+
     <div class="well">
-        <h4>Leave a Comment:</h4>
+        <h4>add a Comment:</h4>
             <form action="" method="post" role="form">
                 
                 <div class="form-group">
@@ -123,7 +126,7 @@ if(isset($_POST['create-comment'])) {
 
 <hr>
 
-<!-- Posted Comments -->
+<!---------------------- Show Exsisting Comments Query ----------------------->
 
 <?php 
 
@@ -144,7 +147,8 @@ if(isset($_POST['create-comment'])) {
             $commentAuthor = $row['comment_author']; 
 
             ?>
-        <!-- Comment -->
+
+<!-------------------- the Comments on the Post --------------------------------->
     <div class="media">
         <a class="pull-left" href="#">
             <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -168,7 +172,7 @@ if(isset($_POST['create-comment'])) {
 <?php  include "includes/sidebar.php";  ?>
 
 </div>
-<!-- /.row -->
+
 
 <hr>
 

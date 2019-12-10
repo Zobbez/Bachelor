@@ -15,7 +15,7 @@ include "includes/navigation.php";
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
+<!--------------------------- Page Heading on categories admin ------------------->
                 <div class="row">
                     <div class="col-lg-12">
 
@@ -28,7 +28,8 @@ include "includes/navigation.php";
 
                         
                         <?php 
-                        // add categories
+
+                        // add categories function and form 
                         addCategory(); ?>
 
                             <form action="" method="post">
@@ -41,9 +42,12 @@ include "includes/navigation.php";
                                 </div>
                             </form>
 
+
+                            
                            
-                            <?php 
-                            // edit and include of edit categories query
+                        <?php 
+
+                        // check if the get request of edit is set, and include of edit categories query
                             if(isset($_GET['edit'])) {
 
                                 $catId = $_GET['edit'];
@@ -53,7 +57,7 @@ include "includes/navigation.php";
                             }
                             
                             
-                            ?>
+                        ?>
 
 
                         </div>
@@ -71,11 +75,12 @@ include "includes/navigation.php";
                             <tbody>
 
                             <?php 
-                            // read categories 
+
+                            /////////////////////////////// READ CATEGORIES //////////////////////////////
 
                                 readCategories();
                           
-                            // delete categories 
+                             /////////////////////////////// DELETE CATEGORY //////////////////////////////
 
                                 deleteCategory();
                             
@@ -88,20 +93,15 @@ include "includes/navigation.php";
                         
                         
                         </div>
-
-
-
-
                       
                     </div>
+
                 </div>
-                <!-- /.row -->
 
             </div>
-            <!-- /.container-fluid -->
-
+           
         </div>
-        <!-- /#page-wrapper -->
+
 
    
 <?php 

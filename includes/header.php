@@ -11,11 +11,11 @@
 
     <title>Blog Home - Start Bootstrap Template</title>
 
-    <!-- Bootstrap Core CSS -->
+    <!-------------------------- Bootstrap Core CSS ----------------------->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     
 
-    <!-- Custom CSS -->
+    <!-------------------------- Custom CSS ------------------------------->
     <link href="css/blog-home.css" rel="stylesheet">
 
    

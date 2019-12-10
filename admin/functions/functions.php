@@ -39,7 +39,7 @@
     
     confirmQuery($createPostQuery);
 
-// refresh the page so that category is deleted instantly.
+// refresh the page so that post is added and it goes back to view all posts.
     header("Location: posts.php");
 
     }
@@ -146,7 +146,7 @@
 //  the create query was successful if not kil the script
     if(!$result) {
 
-    die("Quert Failed" . mysqli_error($connection));
+    die("Query Failed" . mysqli_error($connection));
 
 }
 
