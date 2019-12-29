@@ -4,7 +4,7 @@ include "includes/header.php";
 ?>
 
 
-        <div id="wrapper">
+        <div id="wrapper" style="background-color: darkslategray !important;">
 
         <?php  
         include "includes/navigation.php";
@@ -21,8 +21,8 @@ include "includes/header.php";
                         <div class="col-lg-12">
 
                             <h1 class="page-header">
-                                Welcome to Admin
-                                <small>Author name</small>
+                               See all posts
+                                <small><?php echo $_SESSION['username']; ?></small>
                             </h1>
 
         <?php 

@@ -1,8 +1,21 @@
 <?php 
 // handling buffering the request in the headers of the scripts, when a script is done it will send everything at the same time. instead of the normal 1 by 1
 ob_start();
+session_start();
 include "../includes/db.php"; 
 include "./functions/functions.php";
+
+// check is the userrole from the session is admin if it is it goes to admin.oho else it will not be able to login as it is
+ if(!isset($_SESSION['userrole'])) {
+
+        header("Location: ../index.php");
+
+ } 
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +29,7 @@ include "./functions/functions.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>No title for now</title>
 
      <!-------------------------- Bootstrap Core CSS ----------------------->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -25,11 +38,11 @@ include "./functions/functions.php";
     <link href="css/sb-admin.css" rel="stylesheet">
 
     <!--------------------------- Custom Font font-awesome ------------------------------>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/45088db5a6.js" crossorigin="anonymous"></script>
    
 
 
 
 </head>
 
-<body>
+<body style="background-color: darkslategray">

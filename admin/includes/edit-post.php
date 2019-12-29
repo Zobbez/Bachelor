@@ -127,9 +127,20 @@ header("Location: posts.php");
 </div>
 
 <div class="form-group">
-    <label for="post-status">Post status</label>
-    <input value="<?php echo $postsStatus; ?>"  type="text" class="form-control" name="post-status"> 
+    <select name="post-status" id="">
+        <option value=''><?php echo $postsStatus; ?></option>
+       <?php if($postsStatus == 'published') {
+        
+        echo "<option value='draft'>draft</option>";
+
+       } else {
+        echo "<option value='published'>published</option>";  
+       }
+       
+       ?>
+    </select>
 </div>
+
 
 <div class="form-group">
     <img width="300" src="../images/<?php echo $postsImage; ?>" alt="">

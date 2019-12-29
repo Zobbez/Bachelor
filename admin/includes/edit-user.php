@@ -1,151 +1,141 @@
 <?php 
 
-if(isset($_GET['p_id'])) {
+if(isset($_GET['edit-user'])) {
 
-$postId = $_GET['p_id'];
+    $userId = $_GET['edit-user'];
 
-
-
-}
-
-// query to select all from the posts 
-    $query = "SELECT * FROM posts WHERE post_id = $postId";
+// query to select all from the users
+    $query = "SELECT * FROM users WHERE user_id = $userId";
 // pass the db connection and the query.
-    $selectPostsById = mysqli_query($connection, $query);
+    $selectUsersQuery = mysqli_query($connection, $query);
+             
+// to grab the users, a while loop is used. fecth the result of the query.
+    while($row = mysqli_fetch_assoc($selectUsersQuery)) {
+// the data comes in an assosiative array and the row from the database , and it can be run through a while loop and put into a tr into the table.    
+    $userId = $row['user_id'];
+    $userUsername = $row['user_username'];
+    $userPassword = $row['user_password'];
+    $userFirstname = $row['user_firstname'];
+    $userLastname = $row['user_lastname'];
+    $userEmail = $row['user_email'];
+    $userImage = $row['user_image'];
+    $userRole = $row['user_role'];
+            
+             }     
 
-// to display the posts, a while loop is used. fecth the result of the query.
-    while($row = mysqli_fetch_assoc($selectPostsById)) {
-// the data comes in an assosiative array and the row from the database , and it can be run through a while loop and put the values into the input fields    
-    $postsId = $row['post_id'];
-    $postsAuthor = $row['post_author'];
-    $postsTitle = $row['post_title'];
-    $postsCategoryId = $row['post_category_id'];
-    $postsStatus = $row['post_status'];
-    $postsImage = $row['post_image'];
-    $postsContent = $row['post_content'];
-    $postsTags = $row['post_tags'];
-    $postsCommentCount = $row['post_comment_count'];
-    $postsDate = $row['post_date'];
 
     }
 
 
-    if(isset($_POST['update-post'])) {
-// these are used in the query to send to the database
-    $postsTitle = $_POST['title'];
-    $postsAuthor = $_POST['author'];
-    $postsCategoryId = $_POST['post-category'];
-    $postsStatus = $_POST['post-status'];
+    
+    if(isset($_POST['edit-user'])) {
+// assigning the values from the forms to variables.
+    $userId = $_GET['edit-user'];
+    $userFirstName = $_POST['first-name'];
+    $userLastName = $_POST['last-name'];
+    $userRole = $_POST['user-role'];
+
 // super global FILES with image from form and a tempary location. needs to be told where to go.
-    $postsImage = $_FILES['image']['name'];
-    $postsImageTemp = $_FILES['image']['tmp_name'];
-    $postsContent = $_POST['post-content'];
-    $postsTags = $_POST['post-tags'];
+    $userImage = $_FILES['image']['name'];
+    $userImageTemp = $_FILES['image']['tmp_name'];
+        
+    $userName = $_POST['username'];
+    $userEmail = $_POST['email'];
+    $userPassword = $_POST['password'];
+    
+//  $userCreatedDate = date('d-m-y');
+    
 
 // takes two parameters and moves the image from the temp location to the location that is specified
-    move_uploaded_file($postsImageTemp, "../images/$postsImage");
-// check if the image variable is empty
-    if(empty($postsImage)) {
+    move_uploaded_file($userImageTemp, "../images/$userImage");
 
-    $query = "SELECT * FROM posts WHERE post_id = $postId";
-    $selectImage = mysqli_query ($connection, $query);
-// loop through the query 
-    while($row = mysqli_fetch_array($selectImage)) {
-// pull out image and set as the variable
-    $postsImage = $row['post_image'];
 
+    if(empty($userImage)) {
+
+        $query = "SELECT * FROM users WHERE user_id = $userId";
+        $selectImage = mysqli_query ($connection, $query);
+    // loop through the query 
+        while($row = mysqli_fetch_array($selectImage)) {
+    // pull out image and set as the variable
+        $userImage = $row['user_image'];
+    
+            }
+    
         }
 
-    }
+
+    $query = "UPDATE users SET user_firstname = '{$userFirstName}', user_lastname = '{$userLastName}', user_role = '{$userRole}', user_username = '{$userName}', user_email = '{$userEmail}', user_password = '{$userPassword}', user_image = '{$userImage}' WHERE user_id = {$userId} ";    
+
+    $updateUserQuery = mysqli_query($connection, $query);
+
+    confirmQuery($updateUserQuery);
+
+// refresh the page so that post is added and it goes back to view all posts.
+    header("Location: users.php");
 
 
-    $query = "UPDATE posts SET post_title = '{$postsTitle}', post_category_id = '{$postsCategoryId}', post_date = now(), post_author = '{$postsAuthor}', post_status = '{$postsStatus}', post_tags = '{$postsTags}', post_content = '{$postsContent}', post_image = '{$postsImage}' WHERE post_id = $postId ";    
-
-    $updateQuery = mysqli_query($connection, $query);
-
-    confirmQuery($updateQuery);
-
-
-
-
-
-    }
-
+        }
+    
+       
 
 ?>
 
 
 
 
-
+<!-- to upload image the attribute enctype is needed on the form, it's sending different form data. -->
 <form action=""  method="post" enctype="multipart/form-data">
 
-
 <div class="form-group">
-    <label for="title">Post title</label>
-    <input value="<?php echo $postsTitle; ?>"  type="text" class="form-control" name="title"> 
+    <label for="title">First name</label>
+    <input type="text" value="<?php echo $userFirstname;  ?>" class="form-control" name="first-name"> 
 </div>
 
 <div class="form-group">
-
-    <select name="post-category" id="post-category">
-        <?php
-
-// query to select all from the categories where the cat_id is the selected
-    $query = "SELECT * FROM categories";
-// pass the db connection and the query.
-    $selectCategories = mysqli_query($connection, $query);
+    <label for="post-status">Last name</label>
+    <input type="text" value="<?php echo $userLastname;  ?>" class="form-control" name="last-name"> 
+</div>
 
 
-    confirmQuery($selectCategories);   
+<div class="form-group">
+    <label for="user-role">User type </label>
+    <select name="user-role" id="user-role">
+    <option value="user"><?php echo $userRole; ?></option>  
 
-// to display the categories, a while loop is used. fecth the result of the query.
-    while($row = mysqli_fetch_assoc($selectCategories)) {
-// catId and catTitle comes in an assosiative array and the row from the database , and it can be echoed in a td in a tr into the table.    
-    $catId = $row['cat_id'];
-    $catTitle = $row['cat_title'];
+    <?php  if($userRole == 'admin') {
+    echo "<option value='user'>user</option>";
 
-    echo "<option value='$catId'>$catTitle</option>";
-
-
-
-
-
-                }
-
-        ?>
-
-                
+    }  else { echo "<option value='admin'>admin</option>"; }        ?>
+             
+                     
     </select>
 </div>
 
-<div class="form-group">
-    <label for="title">Post author</label>
-    <input value="<?php echo $postsAuthor; ?>" type="text" class="form-control" name="author"> 
-</div>
-
-<div class="form-group">
-    <label for="post-status">Post status</label>
-    <input value="<?php echo $postsStatus; ?>"  type="text" class="form-control" name="post-status"> 
-</div>
-
-<div class="form-group">
-    <img width="300" src="../images/<?php echo $postsImage; ?>" alt="">
+ <div class="form-group">
+    <label for="user-image">User image</label>
+    <img width="300" src="../images/<?php echo $userImage; ?>" alt="">
     <input type="file" name="image"> 
+</div> 
+
+<div class="form-group">
+    <label for="post-tags">Username</label>
+    <input type="text" value="<?php echo $userUsername;  ?>" class="form-control" name="username"> 
 </div>
 
 <div class="form-group">
-    <label for="post-tags">Post tags</label>
-    <input value="<?php echo $postsTags; ?>"  type="text" class="form-control" name="post-tags"> 
+    <label for="post-content">Email</label>
+    <input type="email" value="<?php echo $userEmail;  ?>" class="form-control" name="email"> 
 </div>
 
-<div class="form-group">
-    <label for="post-content">Post content</label>
-    <textarea class="form-control" name="post-content" id="" cols="30" rows="10"> <?php echo $postsContent; ?>  </textarea>
-</div>
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" name="update-post" value="Update post"> 
+    <label for="post-content">Password</label>
+    <input type="password" value="<?php echo $userPassword;  ?>" class="form-control" name="password"> 
+</div>
+
+
+<div class="form-group">
+    <input class="btn btn-primary" type="submit" name="edit-user" value="Edit user"> 
 </div>
 
 

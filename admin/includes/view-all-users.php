@@ -8,6 +8,10 @@
         <th>Lastname</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Change user to</th>
+        <th>Change user to</th>
+        <th>Edit user</th>
+        <th>Delete user</th>
         
 
 
@@ -39,11 +43,11 @@ readUsers();
 
 <?php 
 
-deleteComments();
+deleteUser();
 
-approveComments();
+makeUserAdmin();
 
-unapproveComments();
+makeUserUser();
 
 
 

@@ -3,7 +3,7 @@
 
 //////////////////////////////////// CREATE POST /////////////////////////////////
 
-    function createPost() {
+function createPost() {
 
 // makes the connection variable global
     global $connection;
@@ -48,7 +48,7 @@
 
 //////////////////////////////////// READ POST /////////////////////////////////
 
-    function readPosts() {
+function readPosts() {
 
 // makes the connection variable global
     global $connection;
@@ -110,7 +110,7 @@
 
 //////////////////////////////////// DELETE POST /////////////////////////////////
 
-    function deletePost() {
+function deletePost() {
 
 // makes the connection variable global
     global $connection;
@@ -138,7 +138,7 @@
 
 //////////////////////////////////// FUNCTION USED TO CONTROL QUERY ERROR /////////////////////////////////
 
-    function confirmQuery($result) {
+function confirmQuery($result) {
 
 // makes the connection variable global
     global $connection;
@@ -156,7 +156,8 @@
 
 
 /////////////////////////////// CREATE CATEGORY //////////////////////////////
-    function addCategory() {
+
+function addCategory() {
 
 // makes the connection variable global
     global $connection;
@@ -196,7 +197,8 @@
 
 
 /////////////////////////////// READ CATEGORY QUERY //////////////////////////////
-    function readCategories() {
+
+function readCategories() {
 
 // makes the connection variable global
     global $connection;
@@ -224,7 +226,8 @@
 }     
 
 /////////////////////////////// DELETE CATEGORY QUERY //////////////////////////////
-    function deleteCategory() {
+    
+function deleteCategory() {
 
 // makes the connection variable global
     global $connection;
@@ -304,7 +307,7 @@ function readComments() {
 
 //////////////////////////////////// DELETE COMMENTS /////////////////////////////////
 
-    function deleteComments() {
+function deleteComments() {
 
 // makes the connection variable global
     global $connection;
@@ -328,7 +331,7 @@ function readComments() {
 
  //////////////////////////////////// APPROVE COMMENTS /////////////////////////////////
 
-    function approveComments() {
+function approveComments() {
 
     // makes the connection variable global
         global $connection;
@@ -352,7 +355,7 @@ function readComments() {
     
  //////////////////////////////////// UNAPPROVE COMMENTS /////////////////////////////////
 
-    function unapproveComments() {
+function unapproveComments() {
 
     // makes the connection variable global
         global $connection;
@@ -407,6 +410,7 @@ function readUsers() {
         echo "<td>{$userLastname}</td>";
         echo "<td>{$userEmail}</td>";
         echo "<td>{$userRole}</td>";
+        
     /* //  query to select all from the posts where the post_id column matches the id of the comment_post_id, so it can be related from the database
         $query = "SELECT * FROM posts WHERE post_id = $commentPostId";
         $selectPostIdQuery = mysqli_query($connection, $query); 
@@ -419,10 +423,12 @@ function readUsers() {
         echo "<td><a href='../post.php?p_id=$postId'>{$postTitle}</a></td>";
         }  */
     
-    // the user id is used to target the selecteded comment
-        echo "<td><a href='comments.php?approve='>approve</a></td>";
-        echo "<td><a href='comments.php?unapprove='>unapprove</a></td>";
-        echo "<td><a href='comments.php?delete='>X</a></td>";
+    // the user id is used to target the selecteded user
+        echo "<td><a href='users.php?change-to-admin=$userId'>Make admin</a></td>";
+        echo "<td><a href='users.php?change-to-user=$userId'>Make user</a></td>";
+    // sending the source parameter, i use switch statement in users.php like in posts.php
+        echo "<td><a href='users.php?source=edit-user&edit-user=$userId'>edit</a></td>";
+        echo "<td><a href='users.php?delete=$userId'>X</a></td>";
         echo "</tr>";
     
     
@@ -432,6 +438,140 @@ function readUsers() {
         
         }
 
+//////////////////////////////////// CREATE USER /////////////////////////////////
+
+function createUser() {
+
+    // makes the connection variable global
+        global $connection;
+    
+        if(isset($_POST['create-user'])) {
+    // assigning the values from the forms to variables.
+        $userId = 0;
+        $userFirstName = $_POST['first-name'];
+        $userLastName = $_POST['last-name'];
+        $userRole = $_POST['user-role'];
+
+    // super global FILES with image from form and a tempary location. needs to be told where to go.
+        $userImage = $_FILES['image']['name'];
+        $userImageTemp = $_FILES['image']['tmp_name'];
+          
+        $userName = $_POST['username'];
+        $userEmail = $_POST['email'];
+        $userPassword = $_POST['password'];
+       
+    //    $userCreatedDate = date('d-m-y');
+      
+    
+    
+    
+    // takes two parameters and moves the image from the temp location to the location that is specified
+        move_uploaded_file($userImageTemp, "../images/$userImage");
+
+
+    // insert the post data into the posts table in the following columns
+        $query = "INSERT INTO users( user_id, user_firstname, user_lastname, user_role, user_image, user_username, user_email, user_password)";
+    // concatenate the rest of the query with the value to put into the database.
+    // the now function is gonna format the date to the current date and make it look good in the database
+        $query .= "VALUES ($userId, '{$userFirstName}', '{$userLastName}', '{$userRole}', '{$userImage}', '{$userName}', '{$userEmail}', '{$userPassword}')";
+    
+        $createUserQuery = mysqli_query($connection, $query);
+    
+        
+        confirmQuery($createUserQuery);
+    
+    // refresh the page so that post is added and it goes back to view all posts.
+        header("Location: users.php");
+    
+        }
+    
+    }   
+    
+    
+
+//////////////////////////////////// DELETE USER /////////////////////////////////
+
+function deleteUser() {
+
+    
+
+    // makes the connection variable global
+        global $connection;
+    // check if a get request is send and check for the delete key
+        if(isset($_GET['delete'])) {
+    // if it is found save the value of the key into variable
+        $deleteUserId = $_GET['delete'];
+    // make the query that deletes the selected user from the users table    
+        $query = "DELETE FROM users WHERE user_id  = $deleteUserId"; 
+    // send the query to the database    
+        $deleteQuery = mysqli_query($connection, $query); 
+    // refresh the page so that user is deleted instantly.
+        header("Location: users.php");
+                
+                
+                }    
+            
+            
+            
+                }   
+
+
+
+
+
+                
+                
+
+ //////////////////////////////////// MAKE USER ADMIN /////////////////////////////////
+
+ function makeUserAdmin() {
+
+    // makes the connection variable global
+        global $connection;
+    // check if a get request is send and check for the delete key
+        if(isset($_GET['change-to-admin'])) {
+    // if it is found save the value of the key into variable
+        $makeUserAdmin = $_GET['change-to-admin'];
+    // make the query that unapproves the selected comment from the comments table    
+        $query = "UPDATE users SET user_role = 'admin' WHERE user_id = $makeUserAdmin "; 
+    // send the query to the database    
+        $makeUserAdminQuery = mysqli_query($connection, $query); 
+    // refresh the page so that comment is deleted instantly.
+        header("Location: users.php");
+        
+        
+        }    
+    
+    
+    
+        }   
+        
+        
+ //////////////////////////////////// MAKE USER USER /////////////////////////////////
+
+ function makeUserUser() {
+
+    // makes the connection variable global
+        global $connection;
+    // check if a get request is send and check for the delete key
+        if(isset($_GET['change-to-user'])) {
+    // if it is found save the value of the key into variable
+        $makeUserUser = $_GET['change-to-user'];
+    // make the query that unapproves the selected comment from the comments table    
+        $query = "UPDATE users SET user_role = 'user' WHERE user_id = $makeUserUser "; 
+    // send the query to the database    
+        $makeUserAdminQuery = mysqli_query($connection, $query); 
+    // refresh the page so that comment is deleted instantly.
+        header("Location: users.php");
+        
+        
+        }    
+    
+    
+    
+        } 
+        
+    
 
 
 

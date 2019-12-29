@@ -43,20 +43,13 @@
 
 ?>
 
-    <h1 class="page-header">
-            Page Heading
-    <small>Secondary Text</small>
-    </h1>
+    
 
 <!----------------------------- Post single view  ---------------------------->
-    <h2>
-        <a href="#"><?php echo $postTitle; ?></a>
-    </h2>
-    <p class="lead">
-        by <a href="index.php"><?php echo $postAuthor; ?></a>
-    </p>
-    <p><span class="glyphicon glyphicon-time"></span> <?php echo $postDate; ?></p>
-    <hr>
+        <h1 class="page-header">
+        <a href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
+        <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
+        </h1>
         <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt="">
     <hr>
     <p> <?php echo $postContent; ?> </p>

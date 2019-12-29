@@ -1,11 +1,9 @@
 <?php 
 
-createPost();
+//////////////////////////////////// CREATE POST from functions.php /////////////////////////////////
+    createPost();
 
 ?>
-
-
-
 
 
 <!-- to upload image the attribute enctype is needed on the form, it's sending different form data. -->
@@ -49,6 +47,9 @@ createPost();
                 
     </select>
 </div>
+
+
+<!--------------------------- Add post form ------------------------->
 
 <div class="form-group">
     <label for="title">Post author</label>

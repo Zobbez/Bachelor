@@ -21,8 +21,8 @@
                 <div class="col-lg-12">
 
                 <h1 class="page-header">
-                    Welcome to Admin
-                    <small>Author name</small>
+                    see all users
+                    <small><?php echo $_SESSION['username']; ?></small>
                 </h1>
 
         
@@ -46,8 +46,8 @@
                 include "includes/add-user.php";
                 break;
 
-                case 'edit-post';
-                include "includes/edit-post.php";
+                case 'edit-user';
+                include "includes/edit-user.php";
                 break;
 
             // set the defualt to show all the users if no source criteria fits. 
