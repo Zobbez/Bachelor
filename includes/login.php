@@ -34,8 +34,12 @@
 
 
     }
+
+// reversing the salt to be able to login with the created password and not the encrypted one.    
+    $password = crypt($passwordClean, $dbUserPassword);
+
 // check if the username and password from the form matches the ones in the database if it does assign sessions with the variables created from the database values 
-    if($usernameClean === $dbUserUsername && $passwordClean === $dbUserPassword) {
+    if($usernameClean === $dbUserUsername && $password === $dbUserPassword) {
 
         $_SESSION['username'] =  $dbUserUsername;
         $_SESSION['firstname'] =  $dbUserFirstname;

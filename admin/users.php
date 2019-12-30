@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
 
                 <h1 class="page-header">
-                    see all users
+                    User settings
                     <small><?php echo $_SESSION['username']; ?></small>
                 </h1>
 

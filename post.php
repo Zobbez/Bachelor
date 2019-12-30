@@ -66,25 +66,39 @@
 
 // checking if the variable is set, if it is create the comment
     if(isset($_POST['create-comment'])) {
+
 // get the get request of p_id from the url 
     $postId = $_GET['p_id'];
 // get the data that was typed in the form
     $commentAuthor = $_POST['comment-author'];
     $commentEmail = $_POST['comment-email'];
     $commentContent = $_POST['comment-content'];
+
+
+    if(!empty($commentAuthor) && !empty($commentEmail) && !empty($commentContent) ) {
+
 // insert into comments all the needed fields from the database. 
     $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($postId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now() ) ";
 // send the query to the database  
     $addCommentQuery = mysqli_query($connection, $query);
 //  the add comment query was successful if not kil the script           
-            if(!$addCommentQuery) {
-            die('QUERY ERROR' . mysqli_error($connection));
-        }
+    if(!$addCommentQuery) {
+    die('QUERY ERROR' . mysqli_error($connection));
+                          }
 
 // increase the post comment count by 1 every time a comment is added on the selected post by the id
     $query2 = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $postId";
 // send the query to the database
     $updateCommentCountQuery = mysqli_query($connection, $query2);
+
+
+
+    } else { 
+
+        echo "<script> alert('fill out comment fields') </script>";
+
+
+    }  
 
 
 }

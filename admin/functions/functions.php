@@ -74,7 +74,7 @@ function readPosts() {
     echo "<tr>";
     echo "<td>{$postsId}</td>";
     echo "<td>{$postsAuthor}</td>";
-    echo "<td>{$postsTitle}</td>";
+    echo "<td><a href='../post.php?p_id=$postsId'>{$postsTitle}</a></td>";
 
 // query to select all from the categories where the cat_id is the id of the post_category_id, so it can be related from the database
     $query = "SELECT * FROM categories WHERE cat_id = {$postsCategoryId}";

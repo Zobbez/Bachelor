@@ -34,6 +34,10 @@
         </span>
     </div>
     </form>
+
+    
+        <a href="registration.php">register</a>
+   
 </div>
 
 

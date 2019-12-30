@@ -16,7 +16,7 @@
 </div>
 
 <div class="form-group">
-
+<label for="post-category">Post category</label>
     <select name="post-category" id="post-category">
         <?php
 
@@ -58,7 +58,10 @@
 
 <div class="form-group">
     <label for="post-status">Post status</label>
-    <input type="text" class="form-control" name="post-status"> 
+    <select name="post-status" id="">
+      <option value="draft">draft</option>
+      <option value="published">published</option>
+    </select>
 </div>
 
 <div class="form-group">
