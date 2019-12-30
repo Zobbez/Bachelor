@@ -17,16 +17,16 @@ if(!empty($username) && !empty($email) && !empty($password)) {
     $password = mysqli_real_escape_string($connection, $password);
 // checking after the default value is there from the database
     $query = "SELECT salt FROM users";
-    $selectRandsatQuery = mysqli_query($connection, $query);
+    $selectSaltQuery = mysqli_query($connection, $query);
 
-    if(!$selectRandsatQuery) {
+    if(!$selectSaltQuery) {
 
     die("QUERY FAILED" . mysqli_error($connection));
 
 
     }
 // find the first result of salt and put it in a variable
-    $row = mysqli_fetch_array($selectRandsatQuery);
+    $row = mysqli_fetch_array($selectSaltQuery);
 
     $salt = $row['salt'];
 // encrypting password     
