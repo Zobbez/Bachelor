@@ -88,6 +88,9 @@
                 }
         
             }
+
+        
+
     
     
         $query = "UPDATE users SET user_firstname = '{$userFirstName}', user_lastname = '{$userLastName}', user_role = '{$userRole}', user_username = '{$userName}', user_email = '{$userEmail}', user_password = '{$userPassword}', user_image = '{$userImage}' WHERE user_username = '{$username}' ";    
@@ -142,19 +145,7 @@
 </div>
 
 
-<div class="form-group">
-    <label for="user-role">User type </label>
-    <select name="user-role" id="user-role">
-    <option value="user"><?php echo $userRole; ?></option>  
 
-    <?php  if($userRole == 'admin') {
-    echo "<option value='user'>user</option>";
-
-    }  else { echo "<option value='admin'>admin</option>"; }        ?>
-             
-                     
-    </select>
-</div>
 
  <div class="form-group">
     <label for="user-image">User image</label>
@@ -175,7 +166,7 @@
 
 <div class="form-group">
     <label for="post-content">Password</label>
-    <input type="password" value="<?php echo $userPassword;  ?>" class="form-control" name="password"> 
+    <input autocomplete="off" type="password" class="form-control" name="password"> 
 </div>
 
 

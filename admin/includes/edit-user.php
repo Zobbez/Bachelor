@@ -63,15 +63,38 @@ if(isset($_GET['edit-user'])) {
     
         }
 
+    if(!empty($userPassword)) {
 
-    $query = "UPDATE users SET user_firstname = '{$userFirstName}', user_lastname = '{$userLastName}', user_role = '{$userRole}', user_username = '{$userName}', user_email = '{$userEmail}', user_password = '{$userPassword}', user_image = '{$userImage}' WHERE user_id = {$userId} ";    
+        $queryPassword = "SELECT user_password FROM users WHERE user_id = $userId";
+        $getUserQuery =  mysqli_query($connection, $query);
+        confirmQuery($getUserQuery);
 
-    $updateUserQuery = mysqli_query($connection, $query);
+        $row = mysqli_fetch_array($getUserQuery);
+        $dbUserPassword = $row['user_password'];
+        if($dbUserPassword != $userPassword) {
 
-    confirmQuery($updateUserQuery);
+            $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT, array('cost' => 12));
+    
+        }
 
-// refresh the page so that post is added and it goes back to view all posts.
-    header("Location: users.php");
+        $query = "UPDATE users SET user_firstname = '{$userFirstName}', user_lastname = '{$userLastName}', user_role = '{$userRole}', user_username = '{$userName}', user_email = '{$userEmail}', user_password = '{$hashedPassword}', user_image = '{$userImage}' WHERE user_id = {$userId} ";    
+
+        $updateUserQuery = mysqli_query($connection, $query);
+    
+        confirmQuery($updateUserQuery);
+    
+    // refresh the page so that post is added and it goes back to view all posts.
+        header("Location: users.php");  
+
+    }
+
+   
+
+ 
+   
+
+
+ 
 
 
         }
@@ -130,7 +153,7 @@ if(isset($_GET['edit-user'])) {
 
 <div class="form-group">
     <label for="post-content">Password</label>
-    <input type="password" value="<?php echo $userPassword;  ?>" class="form-control" name="password"> 
+    <input autocomplete="off" type="password" class="form-control" name="password"> 
 </div>
 
 

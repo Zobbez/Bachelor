@@ -29,11 +29,23 @@
                  // to display the categories, a while loop is used. fecth the result of the query.
                     while($row = mysqli_fetch_assoc($selectAllCategoriesQuery)) {
                  // cat_title comes in an assosiative array and the row from the database , and it can be echoed as a li.    
-                    $cat_title = $row['cat_title'];
+                    $catTitle = $row['cat_title'];
                  // get the cat_id from the database 
                     $catId = $row['cat_id'];
+                // needs to be filled out with active to show active navigation link
+                    $categoryClass = '';
+                // determination of what page is active
+                    $pageName = basename($_SERVER['PHP_SELF']);
+                    
+                   if(isset($_GET['category']) && $_GET['category'] == $catId ) {
+                        
+                    $categoryClass = "active";
+
+                    }
+
+
                  // echo all the categories out as links in the navigation.
-                    echo "<li><a href='category.php?category=$catId'>{$cat_title}</a></li>";
+                    echo "<li class='$categoryClass'><a href='category.php?category=$catId'>{$catTitle}</a></li>";
 
                  }
                  

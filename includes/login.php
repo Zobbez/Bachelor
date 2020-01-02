@@ -35,11 +35,9 @@
 
     }
 
-// reversing the salt to be able to login with the created password and not the encrypted one.    
-    $password = crypt($passwordClean, $dbUserPassword);
 
 // check if the username and password from the form matches the ones in the database if it does assign sessions with the variables created from the database values 
-    if($usernameClean === $dbUserUsername && $password === $dbUserPassword) {
+    if(password_verify($passwordClean, $dbUserPassword)) {
 
         $_SESSION['username'] =  $dbUserUsername;
         $_SESSION['firstname'] =  $dbUserFirstname;
@@ -48,7 +46,7 @@
         $_SESSION['userimage'] =  $dbUserImage;
 
 
-        header("Location: ../admin");
+        header("Location: ../admin/posts.php");
         
 // else just redirect to index.
     } else { 

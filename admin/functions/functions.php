@@ -118,7 +118,7 @@ function deletePost() {
     if(isset($_GET['delete'])) {
 // if it is found save the value of the key into variable
     $deletePostId = $_GET['delete'];
-// make the query that deletes the selected catagory from the categories table    
+// make the query that deletes the selected category from the categories table    
     $query = "DELETE FROM posts WHERE post_id = $deletePostId"; 
 // send the query to the database    
     $deleteQuery = mysqli_query($connection, $query); 
@@ -236,7 +236,7 @@ function deleteCategory() {
     if(isset($_GET['delete'])){
 // if it is found save the value of the key into variable
     $deleteCatId = $_GET['delete'];
-// make the query that deletes the selected catagory from the categories table
+// make the query that deletes the selected cateagory from the categories table
     $query = "DELETE FROM categories WHERE cat_id = {$deleteCatId}";
 // send the query to the database
     $deleteQuery = mysqli_query($connection, $query);
@@ -459,11 +459,9 @@ function createUser() {
         $userName = $_POST['username'];
         $userEmail = $_POST['email'];
         $userPassword = $_POST['password'];
+
+        $password = password_hash($userPassword , PASSWORD_DEFAULT, array('cost' => 5));
        
-    //    $userCreatedDate = date('d-m-y');
-      
-    
-    
     
     // takes two parameters and moves the image from the temp location to the location that is specified
         move_uploaded_file($userImageTemp, "../images/$userImage");
@@ -473,7 +471,7 @@ function createUser() {
         $query = "INSERT INTO users( user_id, user_firstname, user_lastname, user_role, user_image, user_username, user_email, user_password)";
     // concatenate the rest of the query with the value to put into the database.
     // the now function is gonna format the date to the current date and make it look good in the database
-        $query .= "VALUES ($userId, '{$userFirstName}', '{$userLastName}', '{$userRole}', '{$userImage}', '{$userName}', '{$userEmail}', '{$userPassword}')";
+        $query .= "VALUES ($userId, '{$userFirstName}', '{$userLastName}', '{$userRole}', '{$userImage}', '{$userName}', '{$userEmail}', '{$password}')";
     
         $createUserQuery = mysqli_query($connection, $query);
     
@@ -499,21 +497,25 @@ function deleteUser() {
         global $connection;
     // check if a get request is send and check for the delete key
         if(isset($_GET['delete'])) {
+
+    if(isset($_SESSION['user_role'])) {
+
+        if($_SESSION['user_role'] == 'admin') {
+
     // if it is found save the value of the key into variable
-        $deleteUserId = $_GET['delete'];
+        $deleteUserId = mysqli_real_escape_string($connection, $_GET['delete']);
     // make the query that deletes the selected user from the users table    
         $query = "DELETE FROM users WHERE user_id  = $deleteUserId"; 
     // send the query to the database    
         $deleteQuery = mysqli_query($connection, $query); 
     // refresh the page so that user is deleted instantly.
         header("Location: users.php");
+                        }   
                 
-                
+                    }  
                 }    
             
-            
-            
-                }   
+          }   
 
 
 

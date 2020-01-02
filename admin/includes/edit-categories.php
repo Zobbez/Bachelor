@@ -38,7 +38,7 @@
     if(isset($_POST['updateCategory'])){
 // if it is found save the value of the key into variable
     $editCatTitle = $_POST['categoryTitle'];
-// make the query that edit the selected catagory title from the categories table
+// make the query that edit the selected cateagory title from the categories table
     $query = "UPDATE categories SET cat_title = '{$editCatTitle}' WHERE cat_id = {$catId}";
 // send the query to the database
     $editQuery = mysqli_query($connection, $query);

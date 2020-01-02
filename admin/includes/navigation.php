@@ -1,4 +1,36 @@
-        <!-- Navigation -->
+<?php  
+
+// determination of what page is active
+$pageName = basename($_SERVER['PHP_SELF']);
+
+$categories = 'categories.php';
+$comments = 'comments.php';
+$commentsClass = '';
+$categoryClass = '';
+
+                    
+if($pageName === $categories) {
+     
+ $categoryClass = 'active';
+
+ } else if($pageName === $comments) {
+
+ $commentsClass = 'active';
+    
+ } else {
+$commentsClass = '';
+$categoryClass = '';
+
+ }
+
+
+
+
+?>
+
+
+
+<!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: darkslategray !important;"  role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -49,11 +81,11 @@
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="./categories.php"><i class="fas fa-paperclip"></i> Catagories </a>
+                    <li class='<?php  echo  $categoryClass;  ?>'>
+                        <a href="./categories.php"><i class="fas fa-paperclip"></i> Categories </a>
                     </li>
               
-                    <li>
+                    <li class='<?php  echo $commentsClass;  ?>'>
                         <a href="./comments.php"><i class="fas fa-comments"></i>Comments</a>
                     </li>
                     <li>

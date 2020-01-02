@@ -16,21 +16,11 @@ if(!empty($username) && !empty($email) && !empty($password)) {
     $email = mysqli_real_escape_string($connection, $email);
     $password = mysqli_real_escape_string($connection, $password);
 // checking after the default value is there from the database
-    $query = "SELECT salt FROM users";
-    $selectSaltQuery = mysqli_query($connection, $query);
 
-    if(!$selectSaltQuery) {
-
-    die("QUERY FAILED" . mysqli_error($connection));
+// add security to the password, it hashes it, with the default algorythm, which would be the recommended standard, and gives it the option of a 12 seconds cost.
+    $password = password_hash($password, PASSWORD_DEFAULT, array('cost' => 12));
 
 
-    }
-// find the first result of salt and put it in a variable
-    $row = mysqli_fetch_array($selectSaltQuery);
-
-    $salt = $row['salt'];
-// encrypting password     
-    $password = crypt($password, $salt);
 
     $query = "INSERT INTO users (user_username, user_email, user_password, user_role, user_image) VALUES ('{$username}', '{$email}', '{$password}', 'user', 'imgUser.png')";
     $registerUserQuery = mysqli_query($connection, $query);
