@@ -6,7 +6,7 @@
 include "includes/db.php";
 include "includes/header.php";
 include "includes/navigation.php";
-session_start();
+//session_start();
 ?>
 
 
@@ -47,36 +47,29 @@ session_start();
     
 // to display the search query , a while loop is used. fecth the result of the query.
     while($row = mysqli_fetch_assoc($searchQuery)) {
-// the data comes in an assosiative array and the row from the database.       
-    $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
-    $post_date = $row['post_date'];
-    $post_image = $row['post_image'];
-    $post_content = $row['post_content'];
+// the data comes in an assosiative array and the row from the database.      
+    $postId = $row['post_id'];
+    $postTitle = $row['post_title'];
+    $postAuthor = $row['post_author'];
+    $postDate = $row['post_date'];
+    $postImage = $row['post_image'];
+    $postContent = $row['post_content'];
             
     ?>
 
 <!--------------------- Structure of a post after search ------------------>    
 
-            <h1 class="page-header">
-                        Page Heading
-                <small>Secondary Text</small>
-            </h1>
+                        <h1 class="page-header">
+                        <a href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;"><?php echo $postTitle; ?></a>
+                            <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
+                        </h1>
 
-            <h2>
-                <a href="#"><?php echo $post_title; ?></a>
-            </h2>
-            <p class="lead">
-                by <a href="index.php"><?php echo $post_author; ?></a>
-            </p>
-            <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
-            <hr>
-            <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
-            <hr>
-            <p> <?php echo $post_content; ?> </p>
-            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <a href="post.php?p_id=<?php echo $postId ?>"> <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt=""> </a>
+                    
+                        <p> <?php echo $postContent; ?> </p>
+                        
 
-            <hr>
+                        <hr>
 
 
     <?php } 
@@ -100,7 +93,7 @@ session_start();
 
             </div>
 
-            <?php  include "includes/sidebar.php";  ?>
+            <span style="position:-webkit-sticky; position:sticky; top:65px;">    <?php  include "includes/sidebar.php";  ?> </span>
 
         </div>
         <!-- /.row -->

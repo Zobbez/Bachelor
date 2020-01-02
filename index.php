@@ -22,7 +22,7 @@ include "includes/navigation.php";
                 <?php
 
                 // query to select all from posts
-                    $query = "SELECT * FROM posts";
+                    $query = "SELECT * FROM posts ORDER BY post_id DESC ";
                 // pass the db connection and the query.
                     $selectAllPostsQuery = mysqli_query($connection, $query);
                 // to display the categories, a while loop is used. fecth the result of the query.
@@ -63,7 +63,7 @@ include "includes/navigation.php";
 
             </div>
 
-            <?php  include "includes/sidebar.php";  ?>
+        <span style="position:-webkit-sticky; position:sticky; top:65px;"><?php  include "includes/sidebar.php";  ?> </span>    
 
         </div>
        
