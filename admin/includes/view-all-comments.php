@@ -5,7 +5,6 @@
         <th>id</th>
         <th>Author</th>
         <th>Comment</th>
-        <th>Email</th>
         <th>Status</th>
         <th>in Response to</th>
         <th>Date</th>

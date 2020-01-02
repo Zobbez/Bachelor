@@ -267,7 +267,6 @@ function readComments() {
     $commentId = $row['comment_id'];
     $commentPostId = $row['comment_post_id'];
     $commentAuthor = $row['comment_author'];
-    $commentEmail = $row['comment_email'];
     $commentContent = $row['comment_content'];
     $commentStatus = $row['comment_status'];
     $commentDate = $row['comment_date'];
@@ -277,7 +276,6 @@ function readComments() {
     echo "<td>{$commentId}</td>";
     echo "<td>{$commentAuthor}</td>";
     echo "<td>{$commentContent}</td>";
-    echo "<td>{$commentEmail}</td>";
     echo "<td>{$commentStatus}</td>";
 //  query to select all from the posts where the post_id column matches the id of the comment_post_id, so it can be related from the database
     $query = "SELECT * FROM posts WHERE post_id = $commentPostId";
@@ -498,9 +496,9 @@ function deleteUser() {
     // check if a get request is send and check for the delete key
         if(isset($_GET['delete'])) {
 
-    if(isset($_SESSION['user_role'])) {
+    if(isset($_SESSION['userrole'])) {
 
-        if($_SESSION['user_role'] == 'admin') {
+        if($_SESSION['userrole'] == 'admin') {
 
     // if it is found save the value of the key into variable
         $deleteUserId = mysqli_real_escape_string($connection, $_GET['delete']);

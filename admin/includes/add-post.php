@@ -53,7 +53,7 @@
 
 <div class="form-group">
     <label for="title">Post author</label>
-    <input type="text" class="form-control" name="author"> 
+    <input type="text" value="<?php echo $_SESSION['username']; ?>" class="form-control" name="author" readonly> 
 </div>
 
 <div class="form-group">

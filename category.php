@@ -6,6 +6,7 @@
     include "includes/db.php";
     include "includes/header.php";
     include "includes/navigation.php";
+//    session_start();
 ?>
 
 
@@ -43,25 +44,19 @@
                         
                 ?>
 
-                        <h1 class="page-header">
-                                    Page Heading
-                            <small>Secondary Text</small>
-                        </h1>
+                       
 
 <!----------------------------- The structure of posts of the selected category  --------------------------------->
 
-                        <h2>
-                            <a href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
-                        </h2>
-                        <p class="lead">
-                            by <a href="index.php"><?php echo $postAuthor; ?></a>
-                        </p>
-                        <p><span class="glyphicon glyphicon-time"></span> <?php echo $postDate; ?></p>
-                        <hr>
-                        <a href="post.php?p_id=<?php echo $postId ?>">  <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt=""> </a>
-                        <hr>
+                        <h1 class="page-header">
+                        <a href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
+                            <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
+                        </h1>
+
+                        <a href="post.php?p_id=<?php echo $postId ?>"> <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt=""> </a>
+                    
                         <p> <?php echo $postContent; ?> </p>
-                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        
 
                         <hr>
 

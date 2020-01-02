@@ -6,6 +6,7 @@
 include "includes/db.php";
 include "includes/header.php";
 include "includes/navigation.php";
+//session_start();
 ?>
 
 
@@ -46,7 +47,7 @@ include "includes/navigation.php";
 
 <!---------------------------------------  Post Structure on home -------------------------------->
                         <h1 class="page-header">
-                        <a href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
+                        <a href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;"><?php echo $postTitle; ?></a>
                             <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
                         </h1>
 

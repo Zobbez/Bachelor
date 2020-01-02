@@ -6,6 +6,7 @@
     include "includes/db.php";
     include "includes/header.php";
     include "includes/navigation.php";
+ //   session_start();
 ?>
 
 
@@ -71,14 +72,15 @@
     $postId = $_GET['p_id'];
 // get the data that was typed in the form
     $commentAuthor = $_POST['comment-author'];
-    $commentEmail = $_POST['comment-email'];
     $commentContent = $_POST['comment-content'];
 
 
-    if(!empty($commentAuthor) && !empty($commentEmail) && !empty($commentContent) ) {
+    if(!empty($commentAuthor) && !empty($commentContent && $_SESSION['userrole'] ) ) {
+
+    $commentImage =  $_SESSION['userimage'];    
 
 // insert into comments all the needed fields from the database. 
-    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES ($postId, '{$commentAuthor}', '{$commentEmail}', '{$commentContent}', 'unapproved', now() ) ";
+    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_content, comment_status, comment_date, comment_image) VALUES ($postId, '{$commentAuthor}', '{$commentContent}', 'unapproved', now(), '{$commentImage}'  ) ";
 // send the query to the database  
     $addCommentQuery = mysqli_query($connection, $query);
 //  the add comment query was successful if not kil the script           
@@ -109,19 +111,20 @@
 
 <!--------------------------------- Add Comments Form ------------------------------------->
 
-    <div class="well">
-        <h4>add a Comment:</h4>
-            <form action="" method="post" role="form">
+   
+
+      
+
+
+            <?php if(isset($_SESSION['userrole'])): ?>
+                <div class="well">
+                <h4>add a Comment:</h4>
+                <form action="" method="post" role="form">
                 
                 <div class="form-group">
                     <label for="Author">Author</label>
-                    <input type="text" class="form-control" name="comment-author">
+                    <input type="text" class="form-control" value="<?php echo $_SESSION['username']; ?>" name="comment-author" readonly>
                 </div>  
-
-                <div class="form-group">
-                    <label for="Author">Email</label>
-                    <input type="email" class="form-control"  name="comment-email">
-                </div>    
 
                 <div class="form-group">
                     <label for="comment">Comment</label>
@@ -129,7 +132,18 @@
                 </div>
                     <button type="submit" name="create-comment" class="btn btn-primary">Submit</button>
             </form>
-    </div>
+            </div>
+
+            <?php else: ?>
+
+              
+
+
+            <?php endif; ?>    
+   
+
+              
+ 
 
 <hr>
 
@@ -152,13 +166,14 @@
             $commentDate = $row['comment_date'];
             $commentContent = $row['comment_content'];
             $commentAuthor = $row['comment_author']; 
+            $commentAuthorImage = $row['comment_image'];
 
             ?>
 
 <!-------------------- the Comments on the Post --------------------------------->
     <div class="media">
         <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
+            <img class="media-object" style="width: 50px; height: 50px;" src="images/<?php echo $commentAuthorImage; ?>" alt="">
         </a>
             <div class="media-body">
                 <h4 class="media-heading"><?php echo  $commentAuthor; ?>

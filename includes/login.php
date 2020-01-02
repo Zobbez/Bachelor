@@ -37,7 +37,7 @@
 
 
 // check if the username and password from the form matches the ones in the database if it does assign sessions with the variables created from the database values 
-    if(password_verify($passwordClean, $dbUserPassword)) {
+    if(password_verify($passwordClean, $dbUserPassword) && $dbUserRole == 'admin') {
 
         $_SESSION['username'] =  $dbUserUsername;
         $_SESSION['firstname'] =  $dbUserFirstname;
@@ -49,9 +49,18 @@
         header("Location: ../admin/posts.php");
         
 // else just redirect to index.
-    } else { 
-
+    } else if (password_verify($passwordClean, $dbUserPassword) && $dbUserRole == 'user') { 
+        $_SESSION['username'] =  $dbUserUsername;
+        $_SESSION['firstname'] =  $dbUserFirstname;
+        $_SESSION['lastname'] =  $dbUserLastname;
+        $_SESSION['userrole'] =  $dbUserRole;
+        $_SESSION['userimage'] =  $dbUserImage;
         header("Location: ../index.php");
+    }
+
+    else { 
+        header("Location: ../index.php");
+
     }
 
 

@@ -1,4 +1,8 @@
 <!-------------- Navigation ------------------->
+<?php
+ session_start();
+?>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: darkslategray;">
     <div class="container">
 
@@ -18,6 +22,9 @@
 
 <!------------------------- Category query for links in the navigation  --------------->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+   
+
         <ul class="nav navbar-nav">
 
 
@@ -49,11 +56,19 @@
 
                  }
                  
-            ?>   
+         
+                 if(isset($_SESSION['userrole'])) {
 
-                     <li>
+                 if($_SESSION['userrole'] == 'admin'){
+
+                   echo '<li>
                         <a href="admin">Admin</a>
-                    </li>
+                    </li>';
+                 } else {
+                     echo "";
+                 }
+                }
+                   ?>      
 
                 </ul>
             </div>

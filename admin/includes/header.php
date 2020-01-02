@@ -5,10 +5,12 @@ session_start();
 include "../includes/db.php"; 
 include "./functions/functions.php";
 
-// check is the userrole from the session is admin if it is it goes to admin.oho else it will not be able to login as it is
- if(!isset($_SESSION['userrole'])) {
+// check is the userrole from the session is admin if it is it goes to admin.php else it will not be able to login as it is
+ if(isset($_SESSION['userrole'])) {
 
+     if($_SESSION['userrole'] !== 'admin'){
         header("Location: ../index.php");
+   }
 
  } 
 
