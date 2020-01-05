@@ -63,7 +63,7 @@ function readPosts() {
 // the data comes in an assosiative array and the row from the database , and it can be run through a while loop and put into a tr into the table.    
     $postsId = $row['post_id'];
     $postsAuthor = $row['post_author'];
-    $postsTitle = $row['post_title'];
+    $postsTitle = substr($row['post_title'],0, 45);
     $postsCategoryId = $row['post_category_id'];
     $postsStatus = $row['post_status'];
     $postsImage = $row['post_image'];
@@ -74,7 +74,7 @@ function readPosts() {
     echo "<tr>";
     echo "<td>{$postsId}</td>";
     echo "<td>{$postsAuthor}</td>";
-    echo "<td><a href='../post.php?p_id=$postsId'>{$postsTitle}</a></td>";
+    echo "<td><a class='btn btn-primary' href='../post.php?p_id=$postsId'>{$postsTitle}</a></td>";
 
 // query to select all from the categories where the cat_id is the id of the post_category_id, so it can be related from the database
     $query = "SELECT * FROM categories WHERE cat_id = {$postsCategoryId}";
@@ -94,8 +94,23 @@ function readPosts() {
     echo "<td>{$postsTags}</td>";
     echo "<td>{$postsCommentCount}</td>";
     echo "<td>{$postsDate}</td>";
-    echo "<td><a href='posts.php?source=edit-post&p_id=$postsId'>edit</a></td>";
-    echo "<td><a href='posts.php?delete=$postsId'>X</a></td>";
+    echo "<td><a class='btn btn-info' href='posts.php?source=edit-post&p_id=$postsId'>edit</a></td>";
+
+    ?>
+
+    <form method="post">
+        
+        <input type="hidden" name="post-id" value="<?php echo $postsId; ?>">
+
+    <?php
+
+    echo   '<td> <input class="btn btn-danger" type="submit" name="delete" value="delete"></td>';
+
+    ?>
+    </form>
+
+    <?php
+
     echo "</tr>";
 
 
@@ -115,11 +130,11 @@ function deletePost() {
 // makes the connection variable global
     global $connection;
 // check if a get request is send and check for the delete key
-    if(isset($_GET['delete'])) {
+    if(isset($_POST['delete'])) {
 // if it is found save the value of the key into variable
-    $deletePostId = $_GET['delete'];
+    $deletePostId = ($_POST['post-id']);
 // make the query that deletes the selected category from the categories table    
-    $query = "DELETE FROM posts WHERE post_id = $deletePostId"; 
+    $query = "DELETE FROM posts WHERE post_id = {$deletePostId}"; 
 // send the query to the database    
     $deleteQuery = mysqli_query($connection, $query); 
 // refresh the page so that category is deleted instantly.
@@ -215,10 +230,25 @@ function readCategories() {
     echo "<tr>";
     echo "<td>{$catId}</td>";
     echo "<td>{$catTitle}</td>";
-// make sure it's on the same page, click on the link to pass parameter catId and ?delete makes key in the array to delete the oncoming value
-    echo "<td><a href='categories.php?delete={$catId}'>X</a></td>";
+
+
+    ?>
+
+    <form method="post">
+        
+        <input type="hidden" name="cat-id" value="<?php echo $catId; ?>">
+
+    <?php
+
+    echo   '<td> <input class="btn btn-danger" type="submit" name="delete-category" value="delete"></td>';
+
+    ?>
+    </form>
+
+    <?php   
+
 // make sure it's on the same page, click on the link to pass parameter catId and ?edit makes key in the array to edit the oncoming value
-    echo "<td><a href='categories.php?edit={$catId}'>Edit</a></td>";
+    echo "<td><a class='btn btn-info' href='categories.php?edit={$catId}'>Edit</a></td>";
     echo "</tr>";
         
                          } 
@@ -233,9 +263,9 @@ function deleteCategory() {
     global $connection;
 
 // check if a get request is send and check for the delete key
-    if(isset($_GET['delete'])){
+    if(isset($_POST['delete-category'])){
 // if it is found save the value of the key into variable
-    $deleteCatId = $_GET['delete'];
+    $deleteCatId = $_POST['cat-id'];
 // make the query that deletes the selected cateagory from the categories table
     $query = "DELETE FROM categories WHERE cat_id = {$deleteCatId}";
 // send the query to the database
@@ -286,14 +316,30 @@ function readComments() {
     $postId = $row['post_id'];
     $postTitle = $row['post_title'];
 // now the title can be echoed and linked to the postId in a GET request so it goes to the post that the comment belongs to
-    echo "<td><a href='../post.php?p_id=$postId'>{$postTitle}</a></td>";
+    echo "<td><a class='btn btn-primary' href='../post.php?p_id=$postId'>{$postTitle}</a></td>";
     } 
 
 // the comment id is used to target the selecteded comment
     echo "<td>{$commentDate}</td>";
-    echo "<td><a href='comments.php?approve=$commentId'>approve</a></td>";
-    echo "<td><a href='comments.php?unapprove=$commentId'>unapprove</a></td>";
-    echo "<td><a href='comments.php?delete=$commentId'>X</a></td>";
+    echo "<td><a class='btn btn-success' href='comments.php?approve=$commentId'>approve</a></td>";
+    echo "<td><a class='btn btn-warning' href='comments.php?unapprove=$commentId'>unapprove</a></td>";
+
+    ?>
+
+    <form method="post">
+        
+        <input type="hidden" name="comment-id" value="<?php echo $commentId; ?>">
+
+    <?php
+
+    echo   '<td> <input class="btn btn-danger" type="submit" name="delete-comment" value="delete"></td>';
+
+    ?>
+    </form>
+
+    <?php  
+
+
     echo "</tr>";
 
 
@@ -310,9 +356,9 @@ function deleteComments() {
 // makes the connection variable global
     global $connection;
 // check if a get request is send and check for the delete key
-    if(isset($_GET['delete'])) {
+    if(isset($_POST['delete-comment'])) {
 // if it is found save the value of the key into variable
-    $deleteCommentId = $_GET['delete'];
+    $deleteCommentId = $_POST['comment-id'];
 // make the query that deletes the selected comments from the comments table    
     $query = "DELETE FROM comments WHERE comment_id  = $deleteCommentId"; 
 // send the query to the database    
@@ -409,24 +455,29 @@ function readUsers() {
         echo "<td>{$userEmail}</td>";
         echo "<td>{$userRole}</td>";
         
-    /* //  query to select all from the posts where the post_id column matches the id of the comment_post_id, so it can be related from the database
-        $query = "SELECT * FROM posts WHERE post_id = $commentPostId";
-        $selectPostIdQuery = mysqli_query($connection, $query); 
-    // to get all the posts, a while loop is used. fecth the result of the query.
-        while($row = mysqli_fetch_assoc($selectPostIdQuery)) {
-    // catTitle comes in an assosiative array and the row from the database , and it can be echoed in a td in a tr into the table to display the name of the category instead of the number.    
-        $postId = $row['post_id'];
-        $postTitle = $row['post_title'];
-    // now the title can be echoed and linked to the postId in a GET request so it goes to the post that the comment belongs to
-        echo "<td><a href='../post.php?p_id=$postId'>{$postTitle}</a></td>";
-        }  */
-    
     // the user id is used to target the selecteded user
-        echo "<td><a href='users.php?change-to-admin=$userId'>Make admin</a></td>";
-        echo "<td><a href='users.php?change-to-user=$userId'>Make user</a></td>";
+        echo "<td><a class='btn btn-success' href='users.php?change-to-admin=$userId'>Make admin</a></td>";
+        echo "<td><a class='btn btn-warning' href='users.php?change-to-user=$userId'>Make user</a></td>";
     // sending the source parameter, i use switch statement in users.php like in posts.php
-        echo "<td><a href='users.php?source=edit-user&edit-user=$userId'>edit</a></td>";
-        echo "<td><a href='users.php?delete=$userId'>X</a></td>";
+        echo "<td><a class='btn btn-info' href='users.php?source=edit-user&edit-user=$userId'>edit</a></td>";
+
+        ?>
+
+        <form method="post">
+            
+            <input type="hidden" name="user-id" value="<?php echo $userId; ?>">
+    
+        <?php
+    
+        echo   '<td> <input class="btn btn-danger" type="submit" name="delete-user" value="delete"></td>';
+    
+        ?>
+        </form>
+    
+        <?php  
+
+
+    //    echo "<td><a href='users.php?delete=$userId'>X</a></td>";
         echo "</tr>";
     
     
@@ -494,14 +545,14 @@ function deleteUser() {
     // makes the connection variable global
         global $connection;
     // check if a get request is send and check for the delete key
-        if(isset($_GET['delete'])) {
+        if(isset($_POST['delete-user'])) {
 
     if(isset($_SESSION['userrole'])) {
 
         if($_SESSION['userrole'] == 'admin') {
 
     // if it is found save the value of the key into variable
-        $deleteUserId = mysqli_real_escape_string($connection, $_GET['delete']);
+        $deleteUserId = mysqli_real_escape_string($connection, $_POST['user-id']);
     // make the query that deletes the selected user from the users table    
         $query = "DELETE FROM users WHERE user_id  = $deleteUserId"; 
     // send the query to the database    
@@ -570,6 +621,52 @@ function deleteUser() {
     
     
         } 
+
+
+//////////////////////////////////// CHECK FOR EXISTING USERNAME /////////////////////////////////
+
+function usernameExist($username) {
+
+    // makes the connection variable global
+        global $connection;
+    //
+        $query = "SELECT user_username FROM users WHERE user_username = '$username'";
+        $result = mysqli_query($connection, $query);
+        confirmQuery($result);
+    // if there are matches, tells how many rows it found in the table
+        if(mysqli_num_rows($result) > 0) {
+            return true;
+        } else {
+
+            return false;
+        }
+
+
+}
+
+//////////////////////////////////// CHECK FOR EXISTING EMAIL /////////////////////////////////
+
+function emailExist($email) {
+
+    // makes the connection variable global
+        global $connection;
+    //
+        $query = "SELECT user_email FROM users WHERE user_email = '$email'";
+        $result = mysqli_query($connection, $query);
+        confirmQuery($result);
+    // if there are matches, tells how many rows it found in the table
+        if(mysqli_num_rows($result) > 0) {
+            return true;
+        } else {
+
+            return false;
+        }
+
+
+}
+
+
+    
         
     
 

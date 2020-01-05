@@ -65,9 +65,9 @@ $categoryClass = '';
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav" style="background-color: darkslategray !important;">
-                    <li>
+                    <!-- <li>
                         <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
+                    </li> -->
                     
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#postsDropdown"><i class="fas fa-envelope"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>

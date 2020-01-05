@@ -8,8 +8,17 @@ if(isset($_POST['register'])) {
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
+$userImage = $_FILES['image']['name'];
+$userImageTemp = $_FILES['image']['tmp_name'];
 
-if(!empty($username) && !empty($email) && !empty($password)) {
+// takes two parameters and moves the image from the temp location to the location that is specified
+move_uploaded_file($userImageTemp, "images/$userImage");
+
+
+if(usernameExist($username) || emailExist($email)) {
+    $message = "username or email already exist"; }
+
+else if(!empty($username) && !empty($email) && !empty($password)) {
 
 // escaping sql injection
     $username = mysqli_real_escape_string($connection, $username );
@@ -22,14 +31,14 @@ if(!empty($username) && !empty($email) && !empty($password)) {
 
 
 
-    $query = "INSERT INTO users (user_username, user_email, user_password, user_role, user_image) VALUES ('{$username}', '{$email}', '{$password}', 'user', 'imgUser.png')";
+    $query = "INSERT INTO users (user_username, user_email, user_password, user_role, user_image) VALUES ('{$username}', '{$email}', '{$password}', 'user', '{$userImage}')";
     $registerUserQuery = mysqli_query($connection, $query);
     if(!$registerUserQuery) {
         die("query failed" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
 
     }
 
-    $message = "your user as been created";
+    $message = "your user has been created";
 
 
 
@@ -59,7 +68,7 @@ if(!empty($username) && !empty($email) && !empty($password)) {
             <div class="col-xs-6 col-xs-offset-3">
                 <div class="form-wrap">
                 <h1>Register</h1>
-                    <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                    <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off" enctype="multipart/form-data">
                         <h6 class="text-center"><?php echo $message; ?></h6>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
@@ -73,6 +82,11 @@ if(!empty($username) && !empty($email) && !empty($password)) {
                             <label for="password" class="sr-only">Password</label>
                             <input type="password" name="password" id="key" class="form-control" placeholder="password">
                         </div>
+
+                        <div class="form-group">
+                            <label for="user-image">User image</label>
+                            <input type="file" name="image"> 
+                        </div> 
                 
                         <input type="submit" name="register"  class="btn btn-primary" value="Register">
                     </form>

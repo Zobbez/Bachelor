@@ -41,13 +41,7 @@ include "includes/header.php";
                                     // if source is equal to different cases to display different things
                                         switch($source) {
 
-                                     //   case 'add-post';
-                                     //   include "includes/add-post.php";
-                                     //   break;
-
-                                     //   case 'edit-post';
-                                     //   include "includes/edit-post.php";
-                                     //   break;
+                                   
 
                                     // set the defualt to show all the comments
                                         default:

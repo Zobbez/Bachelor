@@ -62,7 +62,7 @@
                  if($_SESSION['userrole'] == 'admin'){
 
                    echo '<li>
-                        <a href="admin">Admin</a>
+                        <a href="admin/posts.php">Admin</a>
                     </li>';
                  } else {
                      echo "";

@@ -48,7 +48,7 @@
 
 <!----------------------------- Post single view  ---------------------------->
         <h1 class="page-header">
-        <a href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
+        <a href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;" ><?php echo $postTitle; ?></a>
         <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
         </h1>
         <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt="">
@@ -72,7 +72,7 @@
     $postId = $_GET['p_id'];
 // get the data that was typed in the form
     $commentAuthor = $_POST['comment-author'];
-    $commentContent = $_POST['comment-content'];
+    $commentContent = mysqli_real_escape_string($connection, $_POST['comment-content']);
 
 
     if(!empty($commentAuthor) && !empty($commentContent && $_SESSION['userrole'] ) ) {
@@ -92,8 +92,6 @@
     $query2 = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $postId";
 // send the query to the database
     $updateCommentCountQuery = mysqli_query($connection, $query2);
-
-
 
     } else { 
 

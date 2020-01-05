@@ -69,7 +69,9 @@ include "includes/navigation.php";
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Category title</th>
+                                    <th>category title</th>
+                                    <th>delete</th>
+                                    <th>edit</th>
                                 </tr>
                             </thead>
                             <tbody>
