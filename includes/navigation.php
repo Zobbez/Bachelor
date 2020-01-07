@@ -55,6 +55,10 @@
                     echo "<li class='$categoryClass'><a href='category.php?category=$catId'>{$catTitle}</a></li>";
 
                  }
+
+                 echo '<li>
+                        <a href="random.php">Discover</a>
+                    </li>';
                  
          
                  if(isset($_SESSION['userrole'])) {

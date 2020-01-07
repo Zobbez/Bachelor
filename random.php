@@ -28,7 +28,7 @@
                     $postCategoryId = $_GET['category'];
 
                 // query to select all from posts
-                    $query = "SELECT * FROM posts WHERE post_category_id = $postCategoryId AND post_status = 'published'";
+                    $query = "SELECT * FROM posts WHERE post_status = 'published' ORDER BY RAND() LIMIT 5;";
                 // pass the db connection and the query.
                     $selectAllPostsQuery = mysqli_query($connection, $query);
                 // to display the categories, a while loop is used. fecth the result of the query.
