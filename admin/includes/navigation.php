@@ -40,7 +40,9 @@ $categoryClass = '';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.php">CMS Admin</a>
+                <a href="../index.php">
+                <img alt="logo" src="../images/logo.png" width="150" height="30" style="padding-left: 50px; position: relative; transform: translateY(10px);">
+                </a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

@@ -17,7 +17,7 @@
     <div class="row">
 
 <!---------------------------- Post Query Column ------------------------>
-    <div class="col-md-8">
+    <div class="col-md-8 white">
     
 <?php
 
@@ -48,7 +48,7 @@
 
 <!----------------------------- Post single view  ---------------------------->
         <h1 class="page-header">
-        <a href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;" ><?php echo $postTitle; ?></a>
+        <a class="title" href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;" ><?php echo $postTitle; ?></a>
         <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
         </h1>
         <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt="">
@@ -120,7 +120,7 @@
                 <form action="" method="post" role="form">
                 
                 <div class="form-group">
-                    <label for="Author">Author</label>
+                    <label for="Author">Name</label>
                     <input type="text" class="form-control" value="<?php echo $_SESSION['username']; ?>" name="comment-author" readonly>
                 </div>  
 
@@ -128,7 +128,7 @@
                     <label for="comment">Comment</label>
                     <textarea name="comment-content" class="form-control" rows="3"></textarea>
                 </div>
-                    <button type="submit" name="create-comment" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="create-comment" class="btn btn-success">Submit</button>
             </form>
             </div>
 

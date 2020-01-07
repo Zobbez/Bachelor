@@ -17,10 +17,15 @@ include "./admin/functions/functions.php";
 
     <!-------------------------- Bootstrap Core CSS ----------------------->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+
+    <!-------------------------- Montserrat google font ----------------------->
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     
 
     <!-------------------------- Custom CSS ------------------------------->
-    <link href="css/blog-home.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/home.css" >
 
     
 

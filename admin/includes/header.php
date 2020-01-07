@@ -37,7 +37,11 @@ include "./functions/functions.php";
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
     <!--------------------------- Custom CSS ------------------------------->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/admin.css" >
+
+    <!-------------------------- Tittillium google font ----------------------->
+
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
 
     <!--------------------------- Custom Font font-awesome ------------------------------>
     <script src="https://kit.fontawesome.com/45088db5a6.js" crossorigin="anonymous"></script>

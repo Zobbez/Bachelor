@@ -3,7 +3,7 @@
  session_start();
 ?>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: darkslategray;">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: darkslategray; filter: drop-shadow(0 2mm 8mm black);">
     <div class="container">
 
 
@@ -15,7 +15,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">LOGO SKAL IND</a>
+        <a href="index.php">
+        <img alt="logo" src="images/logo.png" width="120" height="25" style="margin-right: 30px;
+    position: relative;
+    transform: translateY(12px);">
+        </a>
             </div>
 
 
@@ -52,7 +56,7 @@
 
 
                  // echo all the categories out as links in the navigation.
-                    echo "<li class='$categoryClass'><a href='category.php?category=$catId'>{$catTitle}</a></li>";
+                    echo "<li class='$categoryClass';'><a href='category.php?category=$catId'>{$catTitle}</a></li>";
 
                  }
 

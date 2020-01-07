@@ -44,7 +44,7 @@ include "includes/navigation.php";
                                     <input class="form-control" type="text" name="categoryTitle">
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-primary" type="submit" name="submit" value="Add category">
+                                    <input class="btn orangebtn" type="submit" name="submit" value="Add category">
                                 </div>
                             </form>
 

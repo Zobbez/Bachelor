@@ -26,8 +26,8 @@ else if(!empty($username) && !empty($email) && !empty($password)) {
     $password = mysqli_real_escape_string($connection, $password);
 // checking after the default value is there from the database
 
-// add security to the password, it hashes it, with the default algorythm, which would be the recommended standard, and gives it the option of a 12 seconds cost.
-    $password = password_hash($password, PASSWORD_DEFAULT, array('cost' => 12));
+// add security to the password, it hashes it, with the default algorythm, which would be the recommended standard, and gives it the option of a 5 seconds cost.
+    $password = password_hash($password, PASSWORD_DEFAULT, array('cost' => 5));
 
 
 

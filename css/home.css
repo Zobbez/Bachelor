@@ -1,0 +1,41 @@
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    font-family: 'Titillium Web', sans-serif;
+    color: black;
+    background-color: darkslategray;
+}
+
+.title {
+    font-weight: bold;
+
+}
+
+.white {
+background-color: white;
+
+
+}
+
+.orangebtn {
+    color: #fff;
+    background-color: #F5A300 !important;
+    border-color: #F5A300 ;
+    
+}
+
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+    color: #F5A300;
+    background-color: transparent !important;
+}
+
+footer {
+    margin: 50px 0;
+}
