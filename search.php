@@ -25,9 +25,9 @@ include "includes/navigation.php";
 // checking if there is a search submitted, 
     if(isset($_POST['submit'])) {
 // send the search as a post request
-    $search = $_POST['search'];
+    $search = mysqli_real_escape_string($connection, $_POST['search']);
 // select everything from posts where the post_title are like the search input
-    $query = "SELECT * FROM posts WHERE post_title LIKE '%$search%' ";
+    $query = "SELECT * FROM posts WHERE post_title LIKE '%$search%' OR post_tags LIKE '%$search%' ";
 // send the query to the database
     $searchQuery = mysqli_query($connection, $query);
 // check if the search query works 

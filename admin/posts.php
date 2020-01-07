@@ -1,5 +1,11 @@
 <?php 
 include "includes/header.php";
+// checks if the token is set from the admin login else don't give access to the page.
+if (!isset($_SESSION['token']))
+  { echo "CSRF detected";
+    exit;
+
+  }
 
 ?>
 

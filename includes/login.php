@@ -44,6 +44,7 @@
         $_SESSION['lastname'] =  $dbUserLastname;
         $_SESSION['userrole'] =  $dbUserRole;
         $_SESSION['userimage'] =  $dbUserImage;
+        $_SESSION['token'] = bin2hex(random_bytes(16));
 
 
         header("Location: ../admin/posts.php");

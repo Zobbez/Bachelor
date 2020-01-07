@@ -30,6 +30,7 @@
     <h4>Logged in as <?php echo $_SESSION['username'] ?> </h4>
 
     <a href="includes/logout.php" class="btn btn-primary">Logout</a>
+    
 
     <?php else:  ?>
 
@@ -47,7 +48,7 @@
     </div>
     </form>
 
-        <a href="registration.php">register</a>
+        <a class="btn btn-warning" href="registration.php">register</a>
 
     <?php  endif; ?>    
    
