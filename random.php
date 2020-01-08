@@ -49,7 +49,7 @@
 <!----------------------------- The structure of posts of the selected category  --------------------------------->
 
                         <h1 class="page-header">
-                        <a class="title" href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;"><?php echo $postTitle; ?></a>
+                        <a class="title" href="post.php?p_id=<?php echo $postId ?>"><?php echo $postTitle; ?></a>
                             <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
                         </h1>
 

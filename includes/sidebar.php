@@ -4,34 +4,32 @@
 
 <!----------------------------- Search block ----------------------->
 
-    <div class="well">
-    <h3>Search</h3>
+   
+    <h5 class="searchtext">SEARCH</h5>
     <form action="search.php" method="post">
-    <div class="input-group">
-        <input name="search" type="text" class="form-control">
+    <div class="input">
+        <input class="search" name="search" type="text" class="form-control">
         <span class="input-group-btn">
-            <button name="submit" class="btn btn-default" type="submit">
+            <button name="submit" class="hidden"  type="submit">
                 <span class="glyphicon glyphicon-search"></span>
         </button>
         </span>
     </div>
     </form>
-    </div>
+
+
 
 <!----------------------------- Login block ----------------------->
 
-<div class="well">
+
 
     <?php  
     
     if(isset($_SESSION['userrole'])): ?>
 
-    <h4>Logged in as <?php echo $_SESSION['username'] ?> </h4>
-
-    <a href="includes/logout.php" class="btn orangebtn">Logout</a>
-    
-
     <?php else:  ?>
+    
+    <div class="well loginform">
 
     <h4>Login</h4>
     <form action="includes/login.php" method="post">

@@ -3,7 +3,7 @@
  session_start();
 ?>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: darkslategray; filter: drop-shadow(0 2mm 8mm black);">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
 
 
@@ -16,9 +16,7 @@
             <span class="icon-bar"></span>
         </button>
         <a href="index.php">
-        <img alt="logo" src="images/logo.png" width="120" height="25" style="margin-right: 30px;
-    position: relative;
-    transform: translateY(12px);">
+        <img class="logo" alt="logo" src="images/logo.png" width="120" height="25">
         </a>
             </div>
 
@@ -76,7 +74,17 @@
                      echo "";
                  }
                 }
-                   ?>      
+?>
+           <?php     if(isset($_SESSION['userrole'])): ?>
+
+                    <li class="loggedin">Logged in as: <?php echo $_SESSION['username'] ?> </li>
+                
+                    <a href="includes/logout.php" class="btn logoutbtn">Log out</a>
+                    
+                
+            <?php    endif; ?>  
+
+                       
 
                 </ul>
             </div>

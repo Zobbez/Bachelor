@@ -13,15 +13,15 @@ include "./admin/functions/functions.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>No title for now</title>
+    <title>MEMELORD - best of laughs</title>
 
     <!-------------------------- Bootstrap Core CSS ----------------------->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 
-    <!-------------------------- Montserrat google font ----------------------->
+  <!-------------------------- Tittillium google font ----------------------->
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700&display=swap" rel="stylesheet">
     
 
     <!-------------------------- Custom CSS ------------------------------->

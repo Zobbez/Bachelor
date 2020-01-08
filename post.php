@@ -17,7 +17,7 @@
     <div class="row">
 
 <!---------------------------- Post Query Column ------------------------>
-    <div class="col-md-8 white">
+    <div class="col-md-8 white" style="padding-bottom: 30px;">
     
 <?php
 
@@ -48,7 +48,7 @@
 
 <!----------------------------- Post single view  ---------------------------->
         <h1 class="page-header">
-        <a class="title" href="post.php?p_id=<?php echo $postId ?>" style="color: #777777; text-decoration: none;" ><?php echo $postTitle; ?></a>
+        <a class="title" href="post.php?p_id=<?php echo $postId ?>" ><?php echo $postTitle; ?></a>
         <small>by <?php echo $postAuthor; ?> <span style="font-size: 12px" class="glyphicon glyphicon-time"></span> <span style="font-size: 12px"><?php echo $postDate; ?></span> </small>
         </h1>
         <img class="img-responsive" src="images/<?php echo $postImage; ?>" alt="">
@@ -116,7 +116,7 @@
 
             <?php if(isset($_SESSION['userrole'])): ?>
                 <div class="well">
-                <h4>add a Comment:</h4>
+                <h4 style="font-weight: bold;">Did you laugh? tell us below!</h4>
                 <form action="" method="post" role="form">
                 
                 <div class="form-group">
@@ -128,7 +128,7 @@
                     <label for="comment">Comment</label>
                     <textarea name="comment-content" class="form-control" rows="3"></textarea>
                 </div>
-                    <button type="submit" name="create-comment" class="btn btn-success">Submit</button>
+                    <button style=" border-radius: 15px 15px;" type="submit" name="create-comment" class="btn orangebtn">Add comment</button>
             </form>
             </div>
 

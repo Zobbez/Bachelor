@@ -1,7 +1,7 @@
 body {
     margin-top: 100px;
     background-color: #222;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
    
 }
 
@@ -10,6 +10,10 @@ body {
     background-color: #F5A300 !important;
     border-color: #F5A300 ;
     
+}
+
+nav,ul {
+    background-color: darkslategray !important;
 }
 
  
@@ -50,6 +54,12 @@ color: white;
 
 }
 
+.navbar-inverse .navbar-nav>.active>a{
+    color: #F5A300;
+    background-color: transparent !important;
+
+}
+
 .navbar-inverse .navbar-nav>li>a:hover {
 color: #F5A300;
 
@@ -71,14 +81,11 @@ color: #F5A300;
     color: white;
 }
 
-.top-nav>li>a:hover,
-.top-nav>li>a:focus,
-.top-nav>.open>a,
-.top-nav>.open>a:hover,
-.top-nav>.open>a:focus {
-    color: #fff;
-    background-color: #000;
+.top-nav>li>a:hover{
+    background-color: transparent !important;
+    color: #F5A300;
 }
+
 
 .top-nav>.open>.dropdown-menu {
     float: left;
@@ -115,11 +122,7 @@ color: #F5A300;
         width: 225px;
     }
 
-    .side-nav li a:hover,
-    .side-nav li a:focus {
-        outline: none;
-        background-color: #000 !important;
-    }
+   
 }
 
 .side-nav>li>ul {
@@ -133,9 +136,6 @@ color: #F5A300;
     color: white;
 }
 
-.side-nav>li>ul>li>a:hover {
-    color: #F5A300;
-}
 
 
 
