@@ -8,7 +8,7 @@
     $username = $_POST['username'];
     $password = $_POST['password']; 
    
-// avoding sql injection in the form.    
+// avoding sql injection in the login form.    
     $usernameClean = mysqli_real_escape_string($connection, $username);
     $passwordClean = mysqli_real_escape_string($connection, $password);
 
@@ -36,7 +36,8 @@
     }
 
 
-// check if the username and password from the form matches the ones in the database if it does assign sessions with the variables created from the database values and if the user role is admin, go to admin section 
+// check if the username and password from the form matches the ones in the database if it does assign sessions
+// with the variables created from the database values and if the user role is admin, go to admin section 
     if(password_verify($passwordClean, $dbUserPassword) && $dbUserRole == 'admin') {
 
         $_SESSION['username'] =  $dbUserUsername;

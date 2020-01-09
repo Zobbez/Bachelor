@@ -2,7 +2,7 @@
 include "includes/header.php";
 // checks if the token is set from the admin login else don't give access to the page.
 if (!isset($_SESSION['token']))
-  { echo "CSRF detected";
+  { echo "login as admin";
     exit;
 
   }
@@ -31,6 +31,8 @@ if (!isset($_SESSION['token']))
                                 <small><?php echo $_SESSION['username']; ?></small>
                             </h1>
 
+
+
         <?php 
 
             //check if the GET request source is available 
@@ -43,7 +45,7 @@ if (!isset($_SESSION['token']))
                 $source = '';
 
             }
-            //if source GET request send from the navigation is equal to the different cases to display different things
+            //if source GET request send from the navigation is equal to the different cases then display different things
                 switch($source) {
 
                 case 'add-post';
@@ -59,20 +61,9 @@ if (!isset($_SESSION['token']))
                 include "includes/view-all-posts.php";
                 break;
 
-
-
-
-
 }
 
-
-
-
-
-
-
-
-?>
+        ?>
 
 
 

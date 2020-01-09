@@ -71,9 +71,9 @@
 // get the get request of p_id from the url 
     $postId = $_GET['p_id'];
 // get the data that was typed in the form
-    $commentAuthor = $_POST['comment-author'];
+    $commentAuthor = mysqli_real_escape_string($connection, $_POST['comment-author']);
     $commentContent = mysqli_real_escape_string($connection, $_POST['comment-content']);
-
+    
 
     if(!empty($commentAuthor) && !empty($commentContent && $_SESSION['userrole'] ) ) {
 

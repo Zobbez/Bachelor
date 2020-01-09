@@ -57,17 +57,17 @@
         if(isset($_POST['edit-user'])) {
     // assigning the values from the forms to variables.
         $userId = $_GET['edit-user'];
-        $userFirstName = $_POST['first-name'];
-        $userLastName = $_POST['last-name'];
-        $userRole = $_POST['user-role'];
+        $userFirstName = mysqli_real_escape_string($connection, $_POST['first-name']);
+        $userLastName = mysqli_real_escape_string($connection, $_POST['last-name']);
+        $userRole = mysqli_real_escape_string($connection,$_POST['user-role']);
     
     // super global FILES with image from form and a tempary location. needs to be told where to go.
         $userImage = $_FILES['image']['name'];
         $userImageTemp = $_FILES['image']['tmp_name'];
             
-        $userName = $_POST['username'];
-        $userEmail = $_POST['email'];
-        $userPassword = $_POST['password'];
+        $userName = mysqli_real_escape_string($connection, $_POST['username']);
+        $userEmail = mysqli_real_escape_string($connection, $_POST['email']);
+        $userPassword = mysqli_real_escape_string($connection, $_POST['password']);
         
     //  $userCreatedDate = date('d-m-y');
         
