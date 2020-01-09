@@ -99,8 +99,26 @@ color: #F5A300;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
-.top-nav>.open>.dropdown-menu>li>a {
-    white-space: normal;
+.nav>li>a:focus, .nav>li>a:hover{
+    background-color: transparent;
+}
+
+
+.nav .open>a:hover {
+    background-color: transparent !important;
+    color: #F5A300;
+
+}
+
+
+.dropdown-menu>li>a:hover{ 
+    color: #F5A300 !important;
+    background-color: transparent !important;}
+   
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background-color: transparent !important;
+    color: #F5A300 !important;
 }
 
 /* Side Navigation */
@@ -134,6 +152,11 @@ color: #F5A300;
     padding: 10px 15px 10px 38px;
     text-decoration: none;
     color: white;
+}
+
+.side-nav>li>ul>li>a:hover{
+
+    color: #F5A300;
 }
 
 

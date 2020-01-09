@@ -21,11 +21,11 @@ include "includes/navigation.php";
 
                 <?php
 
-                // query to select all from posts
+                // query to select all from posts in descending order so show the highest id first = highest id would mean the newest post.
                     $query = "SELECT * FROM posts ORDER BY post_id DESC ";
                 // pass the db connection and the query.
                     $selectAllPostsQuery = mysqli_query($connection, $query);
-                // to display the categories, a while loop is used. fecth the result of the query.
+                // to display the posts, a while loop is used. fecth the result of the query.
                     while($row = mysqli_fetch_assoc($selectAllPostsQuery)) {
                 // the data comes in an assosiative array and the row from the database, and it can used to echo out the info.        
                     $postId = $row['post_id'];
@@ -67,8 +67,6 @@ include "includes/navigation.php";
 
         </div>
        
-
-
 
 <?php 
        

@@ -54,7 +54,7 @@ createUser();
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" name="create-user" value="Create user"> 
+    <input class="btn orangebtn" type="submit" name="create-user" value="Create user"> 
 </div>
 
 

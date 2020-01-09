@@ -45,7 +45,7 @@
     </div>
     </form>
 
-        <a class="btn btn-success" href="registration.php" style="margin-top: 8px;">register</a>
+        <a class="btn btn-success" href="registration.php" style="margin-top: 8px;">Register</a>
 
     <?php  endif; ?>    
    

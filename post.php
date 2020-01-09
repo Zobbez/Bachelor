@@ -108,15 +108,9 @@
 ?>
 
 <!--------------------------------- Add Comments Form ------------------------------------->
-
-   
-
-      
-
-
             <?php if(isset($_SESSION['userrole'])): ?>
                 <div class="well">
-                <h4 style="font-weight: bold;">Did you laugh? tell us below!</h4>
+                <h4 style="font-weight: 700;">Did you laugh? tell us below!</h4>
                 <form action="" method="post" role="form">
                 
                 <div class="form-group">
@@ -128,11 +122,11 @@
                     <label for="comment">Comment</label>
                     <textarea name="comment-content" class="form-control" rows="3"></textarea>
                 </div>
-                    <button style=" border-radius: 15px 15px;" type="submit" name="create-comment" class="btn orangebtn">Add comment</button>
+                    <button type="submit" name="create-comment" class="btn orangebtn">Add comment</button>
             </form>
             </div>
 
-            <?php else: ?>
+            <?php else: echo "login to add comment"; ?>
 
               
 
