@@ -73,7 +73,7 @@ if(isset($_GET['edit-user'])) {
         $dbUserPassword = $row['user_password'];
         if($dbUserPassword != $userPassword) {
 
-            $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT, array('cost' => 12));
+            $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT, array('cost' => 5));
     
         }
 

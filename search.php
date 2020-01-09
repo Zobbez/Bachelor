@@ -75,20 +75,12 @@ include "includes/navigation.php";
     <?php } 
 
 
-}
+    }
 
 
 }
 
 ?>
-
-
-                 
-               
-
-
-             
-
 
 
             </div>

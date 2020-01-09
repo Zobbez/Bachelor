@@ -21,7 +21,7 @@
     die("QUERY FAILED" .mysqli_error($connection));
 
     }
-// using while loop to pull all the user information out of the query and assign tjhem to variables.
+// using while loop to pull all the user information out of the query and assign them to variables.
     while($row = mysqli_fetch_array($selectUserQuery)) {
 
     $dbUserId = $row['user_id'];
@@ -36,7 +36,7 @@
     }
 
 
-// check if the username and password from the form matches the ones in the database if it does assign sessions with the variables created from the database values 
+// check if the username and password from the form matches the ones in the database if it does assign sessions with the variables created from the database values and if the user role is admin, go to admin section 
     if(password_verify($passwordClean, $dbUserPassword) && $dbUserRole == 'admin') {
 
         $_SESSION['username'] =  $dbUserUsername;
@@ -49,7 +49,7 @@
 
         header("Location: ../admin/posts.php");
         
-// else just redirect to index.
+// else if the users role is user just redirect to index.
     } else if (password_verify($passwordClean, $dbUserPassword) && $dbUserRole == 'user') { 
         $_SESSION['username'] =  $dbUserUsername;
         $_SESSION['firstname'] =  $dbUserFirstname;

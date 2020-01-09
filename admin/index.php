@@ -10,7 +10,7 @@ if (!isset($_SESSION['token']))
 ?>
 
 
-<div id="wrapper" style="background-color: darkslategray !important;">
+<div id="wrapper">
 
 <?php  
 include "includes/navigation.php";

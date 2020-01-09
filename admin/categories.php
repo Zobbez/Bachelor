@@ -35,7 +35,7 @@ include "includes/navigation.php";
                         
                         <?php 
 
-                        // add categories function and form 
+                        /////////////////////////////// ADD CATEGORIES and the form //////////////////////////////
                         addCategory(); ?>
 
                             <form action="" method="post">

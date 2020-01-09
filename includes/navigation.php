@@ -62,11 +62,11 @@
                         <a href="random.php">Discover</a>
                     </li>';
                  
-         
+                // check if the user from session is set,
                  if(isset($_SESSION['userrole'])) {
-
+                // if the user role is admin
                  if($_SESSION['userrole'] == 'admin'){
-
+                // let the user see the navigation link for admin
                    echo '<li>
                         <a href="admin/posts.php">Admin</a>
                     </li>';
@@ -75,7 +75,9 @@
                  }
                 }
 ?>
-           <?php     if(isset($_SESSION['userrole'])): ?>
+           <?php     
+                    // Check if the userrole is set from the session, if it is show "logged in as that user" and a logout button in the nav
+                    if(isset($_SESSION['userrole'])): ?>
 
                     <li class="loggedin">Logged in as: <?php echo $_SESSION['username'] ?> </li>
                 

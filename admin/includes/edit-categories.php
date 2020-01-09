@@ -31,7 +31,9 @@
 <?php  } } ?>
 
 <?php
-        /////////////////////////////// UPDATE QUERY //////////////////////////////
+
+
+/////////////////////////////// UPDATE QUERY //////////////////////////////
 
 
 // check if a get request is send and check for the delete key
@@ -43,11 +45,7 @@
 // send the query to the database
     $editQuery = mysqli_query($connection, $query);
 // check if it is set
-    if(!$editQuery) {
-// if not kil the script
-    die('QUERY FAILED' .mysqli_error($connection));
-
-}
+    confirmQuery($editQuery);
 
 // refresh the page so that category is updated and the input field disapear instantly.
     header("Location: ./categories.php");

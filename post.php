@@ -33,7 +33,7 @@
     $query = "SELECT * FROM posts WHERE post_id = $postId";
 // pass the db connection and the query.
     $selectAllPostsQuery = mysqli_query($connection, $query);
-// to display the categories, a while loop is used. fecth the result of the query.
+// to display the post, a while loop is used. fecth the result of the query.
     while($row = mysqli_fetch_assoc($selectAllPostsQuery)) {
 // the data comes in an assosiative array and the row from the database, and it can used to echo out the info.        
     $postTitle = $row['post_title'];
@@ -126,7 +126,7 @@
             </form>
             </div>
 
-            <?php else: echo "login to add comment"; ?>
+            <?php else: echo "<h4> Hi Friend! login to add comment </h4>"; ?>
 
               
 

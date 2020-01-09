@@ -198,11 +198,7 @@ function addCategory() {
     $createCategoryQuery = mysqli_query($connection, $query);
         
 // If the create query was successful
-    if(!$createCategoryQuery) {
-//  if not kil the script
-    die('QUERY FAILED' .mysqli_error($connection));
-        
-        }
+    confirmQuery($createCategoryQuery);
         
       }
         

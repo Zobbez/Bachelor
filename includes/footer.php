@@ -4,9 +4,9 @@
                 <div class="col-lg-12">
                     <p style="color: white;">Copyright &copy; VZ 2019</p>
                 </div>
-                <!-- /.col-lg-12 -->
+               
             </div>
-            <!-- /.row -->
+           
         </footer>
 
     </div>
